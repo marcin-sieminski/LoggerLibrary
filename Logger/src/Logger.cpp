@@ -6,7 +6,7 @@ using namespace utilities;
 
 namespace logger
 {
-	const std::string Logger::m_sFileName = "Log.txt";
+	const std::string Logger::m_sFileName = "/Logs/Log.txt";
 	Logger* Logger::m_pThis = NULL;
 	ofstream Logger::m_Logfile;
 
