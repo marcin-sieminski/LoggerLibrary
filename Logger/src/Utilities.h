@@ -8,5 +8,4 @@ namespace utilities
 {
 	const std::string CurrentDateTime();
 };
-
 #endif
