@@ -10,10 +10,10 @@ namespace logger
 	Logger* Logger::m_pThis = NULL;
 	ofstream Logger::m_Logfile;
 
-
-
 	Logger::Logger()
-	= default;
+	{
+		SetLevel(level_info);
+	}
 
 	Logger* Logger::GetLogger() {
 		if (m_pThis == NULL) {
@@ -45,25 +45,25 @@ namespace logger
 		m_Logfile << sMessage << "\n";
 	}
 
-	void Logger::Error(const std::string& sMessage)
+	void Logger::LogError(const std::string& sMessage)
 	{
-		if (m_LogLevel >= LogLevelError)
+		if (m_LogLevel >= level_error)
 		{
 			Log("[ERROR]: " + sMessage);
 		}
 	}
 
-	void Logger::Warning(const std::string& sMessage)
+	void Logger::LogWarning(const std::string& sMessage)
 	{
-		if (m_LogLevel >= LogLevelWarning)
+		if (m_LogLevel >= level_warning)
 		{
 			Log("[WARNING]: " + sMessage);
 		}
 	}
 
-	void Logger::Info(const std::string& sMessage)
+	void Logger::LogInfo(const std::string& sMessage)
 	{
-		if (m_LogLevel >= LogLevelInfo)
+		if (m_LogLevel >= level_info)
 		{
 			Log("[INFO]: " + sMessage);
 		}
@@ -76,9 +76,11 @@ namespace logger
 		return *this;
 	}
 
-	void Logger::SetLevel(int level)
+	void Logger::SetLevel(level level)
 	{
 		m_LogLevel = level;
 	}
+
+
 }
 

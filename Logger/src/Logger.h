@@ -5,25 +5,33 @@
 #include <iostream>
 #include <string>
 
+#include "Logger.h"
+
 #define LOGGER Logger::GetLogger()
 
 namespace logger
 {
+	enum level
+	{
+		level_error, level_warning, level_info
+	};
+
 	class Logger
 	{
 	public:
 		void Log(const std::string& sMessage);
 		void Log(const char* format, ...);
 
-		void Error(const std::string& sMessage);
-		void Warning(const std::string& sMessage);
-		void Info(const std::string& sMessage);
+		void LogError(const std::string& sMessage);
+		void LogWarning(const std::string& sMessage);
+		void LogInfo(const std::string& sMessage);
+
 
 		Logger& operator<<(const std::string& sMessage);
 
 		static Logger* GetLogger();
 
-		void SetLevel(int level);
+		void SetLevel(level level);
 
 		const int LogLevelError = 0;
 		const int LogLevelWarning = 1;
@@ -36,7 +44,7 @@ namespace logger
 		static Logger* m_pThis;
 		static std::ofstream m_Logfile;
 
-		int m_LogLevel = LogLevelInfo;
+		level m_LogLevel;
 	};
 }
 

@@ -11,5 +11,7 @@ int main()
     Logger::GetLogger()->Log("message to be logged");
     Logger::GetLogger()->Log(message1);
     LOGGER->Log(" Message is:%s Number is:%d", message2.c_str(), nNum);
+    LOGGER->SetLevel(level_error);
+
     return 0;
 }
