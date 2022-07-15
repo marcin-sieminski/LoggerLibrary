@@ -1,51 +1,102 @@
 #pragma once
-#ifndef LOGGER_H
-#define LOGGER_H
-#include <fstream>
-#include <iostream>
-#include <string>
 
-#include "Logger.h"
-
-#define LOGGER Logger::GetLogger()
+#include <stdio.h>
+#include <mutex>
 
 namespace logger
 {
-	enum level
+
+	enum LogLevel
 	{
-		level_error, level_warning, level_info
+		TraceLevel, DebugLevel, InfoLevel, WarningLevel, ErrorLevel, FatalLevel
 	};
 
 	class Logger
 	{
-	public:
-		void Log(const std::string& sMessage);
-		void Log(const char* format, ...);
-
-		void LogError(const std::string& sMessage);
-		void LogWarning(const std::string& sMessage);
-		void LogInfo(const std::string& sMessage);
-
-
-		Logger& operator<<(const std::string& sMessage);
-
-		static Logger* GetLogger();
-
-		void SetLevel(level level);
-
-		const int LogLevelError = 0;
-		const int LogLevelWarning = 1;
-		const int LogLevelInfo = 2;
-
 	private:
-		Logger();
-		Logger(const Logger&) {};
-		static const std::string m_sFileName;
-		static Logger* m_pThis;
-		static std::ofstream m_Logfile;
+		static std::mutex log_mutex;
+		static LogLevel level;
 
-		level m_LogLevel;
+	public:
+		static void SetPriority(LogLevel newLevel)
+		{
+			level = newLevel;
+		}
+
+		template<typename... Args>
+		static void Trace(const char* message, Args... args)
+		{
+			if (level <= TraceLevel)
+			{
+				std::scoped_lock lock(log_mutex);
+				printf("[Trace]\t");
+				printf(message, args...);
+				printf("\n");
+			}
+		}
+		template<typename... Args>
+		static void Debug(const char* message, Args... args)
+		{
+			if (level <= DebugLevel)
+			{
+				std::scoped_lock lock(log_mutex);
+				printf("[Debug]\t");
+				printf(message, args...);
+				printf("\n");
+			}
+		}
+
+		template<typename... Args>
+		static void Info(const char* message, Args... args)
+		{
+			if (level <= InfoLevel)
+			{
+				std::scoped_lock lock(log_mutex);
+				printf("[Info]\t");
+				printf(message, args...);
+				printf("\n");
+			}
+		}
+
+		template<typename... Args>
+		static void Warning(const char* message, Args... args)
+		{
+			if (level <= WarningLevel)
+			{
+				std::scoped_lock lock(log_mutex);
+				printf("[Warn]\t");
+				printf(message, args...);
+				printf("\n");
+			}
+		}
+
+		template<typename... Args>
+		static void Error(const char* message, Args... args)
+		{
+			if (level <= ErrorLevel)
+			{
+				std::scoped_lock lock(log_mutex);
+				printf("[Error]\t");
+				printf(message, args...);
+				printf("\n");
+			}
+		}
+
+		template<typename... Args>
+		static void Fatal(const char* message, Args... args)
+		{
+			if (level <= FatalLevel)
+			{
+				std::scoped_lock lock(log_mutex);
+				printf("[Critical]\t");
+				printf(message, args...);
+				printf("\n");
+			}
+		}
+
 	};
-}
 
-#endif
+	LogLevel Logger::level = TraceLevel;
+	std::mutex Logger::log_mutex;
+
+}
