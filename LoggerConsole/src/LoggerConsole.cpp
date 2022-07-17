@@ -1,7 +1,6 @@
 #include <string>
 #include "Logger.h"
 using namespace std;
-using namespace logger;
 
 int main()
 {
@@ -9,7 +8,7 @@ int main()
     auto exceptionId = 100;
     auto area = "Main";
 
-    Logger::SetPriority(TraceLevel);
+    Logger::SetLevel(Logger::TraceLevel);
 
     Logger::Trace("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
 

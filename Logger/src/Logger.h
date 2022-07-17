@@ -1,102 +1,173 @@
 #pragma once
+#pragma warning(disable : 4996)
 
-#include <stdio.h>
+#include <cstdio>
 #include <mutex>
+#include <ctime>
 
-namespace logger
+
+class Logger
 {
-
+public:
 	enum LogLevel
 	{
 		TraceLevel, DebugLevel, InfoLevel, WarningLevel, ErrorLevel, FatalLevel
 	};
 
-	class Logger
+private:
+	LogLevel level = InfoLevel;
+	std::mutex log_mutex;
+	
+	const char* filepath = 0;
+	std::FILE* file = 0;
+	
+	char buffer[80];
+	const char* timestamp_format = "%T  %d-%m-%Y";
+
+public:
+	static void SetLevel(LogLevel new_level)
 	{
-	private:
-		static std::mutex log_mutex;
-		static LogLevel level;
+		get_instance().level = new_level;
+	}
 
-	public:
-		static void SetPriority(LogLevel newLevel)
-		{
-			level = newLevel;
-		}
+	static LogLevel GetPriority()
+	{
+		return get_instance().level;
+	}
 
-		template<typename... Args>
-		static void Trace(const char* message, Args... args)
+	static bool EnableFileOutput()
+	{
+		Logger& logger_instance = get_instance();
+		logger_instance.filepath = "log.txt";
+		return logger_instance.enable_file_output();
+	}
+
+	static bool EnableFileOutput(const char* new_filepath)
+	{
+		Logger& logger_instance = get_instance();
+		logger_instance.filepath = new_filepath;
+		return logger_instance.enable_file_output();
+	}
+
+	static const char* GetFilepath()
+	{
+		return get_instance().filepath;
+	}
+
+	static bool IsFileOutputEnabled()
+	{
+		return get_instance().file != 0;
+	}
+
+	static void SetTimestampFormat(const char* new_timestamp_format)
+	{
+		get_instance().timestamp_format = new_timestamp_format;
+	}
+
+	static const char* GetTimestampFormat()
+	{
+		return get_instance().timestamp_format;
+	}
+
+	template<typename... Args>
+	static void Trace(const char* message, Args... args)
+	{
+		get_instance().log("[Trace]    ", TraceLevel, message, args...);
+	}
+
+	template<typename... Args>
+	static void Debug(const char* message, Args... args)
+	{
+		get_instance().log("[Debug]    ", DebugLevel, message, args...);
+	}
+
+	template<typename... Args>
+	static void Info(const char* message, Args... args)
+	{
+		get_instance().log("[Info]     ", InfoLevel, message, args...);
+	}
+
+	template<typename... Args>
+	static void Warning(const char* message, Args... args)
+	{
+		get_instance().log("[Warn]     ", WarningLevel, message, args...);
+	}
+
+	template<typename... Args>
+	static void Error(const char* message, Args... args)
+	{
+		get_instance().log("[Error]    ", ErrorLevel, message, args...);
+	}
+
+	template<typename... Args>
+	static void Fatal(const char* message, Args... args)
+	{
+		get_instance().log("[Crit]     ", FatalLevel, message, args...);
+	}
+
+private:
+	Logger() {}
+
+	Logger(const Logger&) = delete;
+	Logger& operator= (const Logger&) = delete;
+
+	~Logger()
+	{
+		free_file();
+	}
+
+	static Logger& get_instance()
+	{
+		static Logger instance;
+		
+		return instance;
+	}
+
+	template<typename... Args>
+	void log(const char* message_priority_str, LogLevel message_priority, const char* message, Args... args)
+	{
+		if (level <= message_priority)
 		{
-			if (level <= TraceLevel)
+			std::time_t current_time = std::time(0);
+			std::tm* timestamp = std::localtime(&current_time);
+
+			std::scoped_lock lock(log_mutex);
+			std::strftime(buffer, 80, timestamp_format, timestamp);
+			std::printf("%s    ", buffer);
+			std::printf(message_priority_str);
+			std::printf(message, args...);
+			std::printf("\n");
+
+			if (file)
 			{
-				std::scoped_lock lock(log_mutex);
-				printf("[Trace]\t");
-				printf(message, args...);
-				printf("\n");
+				std::fprintf(file, "%s    ", buffer);
+				std::fprintf(file, message_priority_str);
+				std::fprintf(file, message, args...);
+				std::fprintf(file, "\n");
 			}
 		}
-		template<typename... Args>
-		static void Debug(const char* message, Args... args)
+	}
+
+	bool enable_file_output()
+	{
+		free_file();
+
+		file = std::fopen(filepath, "a");
+
+		if (file == 0)
 		{
-			if (level <= DebugLevel)
-			{
-				std::scoped_lock lock(log_mutex);
-				printf("[Debug]\t");
-				printf(message, args...);
-				printf("\n");
-			}
+			return false;
 		}
 
-		template<typename... Args>
-		static void Info(const char* message, Args... args)
+		return true;
+	}
+
+	void free_file()
+	{
+		if (file)
 		{
-			if (level <= InfoLevel)
-			{
-				std::scoped_lock lock(log_mutex);
-				printf("[Info]\t");
-				printf(message, args...);
-				printf("\n");
-			}
+			std::fclose(file);
+			file = 0;
 		}
-
-		template<typename... Args>
-		static void Warning(const char* message, Args... args)
-		{
-			if (level <= WarningLevel)
-			{
-				std::scoped_lock lock(log_mutex);
-				printf("[Warn]\t");
-				printf(message, args...);
-				printf("\n");
-			}
-		}
-
-		template<typename... Args>
-		static void Error(const char* message, Args... args)
-		{
-			if (level <= ErrorLevel)
-			{
-				std::scoped_lock lock(log_mutex);
-				printf("[Error]\t");
-				printf(message, args...);
-				printf("\n");
-			}
-		}
-
-		template<typename... Args>
-		static void Fatal(const char* message, Args... args)
-		{
-			if (level <= FatalLevel)
-			{
-				std::scoped_lock lock(log_mutex);
-				printf("[Critical]\t");
-				printf(message, args...);
-				printf("\n");
-			}
-		}
-
-	};
-
-	LogLevel Logger::level = TraceLevel;
-	std::mutex Logger::log_mutex;
-
-}
+	}
+};
