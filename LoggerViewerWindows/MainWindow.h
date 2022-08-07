@@ -52,6 +52,8 @@ namespace LoggerViewerWindows {
 	private: System::Windows::Forms::TabPage^ tabPageNetworkViewer;
 	private: System::Windows::Forms::TextBox^ textBoxNetworkViewer;
 	private: System::Windows::Forms::Button^ buttonGenerateLog;
+	private: System::Windows::Forms::GroupBox^ groupBoxLogMessage;
+	private: System::Windows::Forms::TextBox^ textBoxLogMessage;
 
 
 	protected:
@@ -71,14 +73,14 @@ namespace LoggerViewerWindows {
 		{
 			this->radioButtonTraceLevel = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBoxLoggingLevel = (gcnew System::Windows::Forms::GroupBox());
-			this->radioButtonDebugLevel = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButtonInfoLevel = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButtonWarningLevel = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButtonErrorLevel = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonFatalLevel = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonErrorLevel = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonWarningLevel = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonInfoLevel = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonDebugLevel = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBoxTarget = (gcnew System::Windows::Forms::GroupBox());
-			this->checkBoxFile = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBoxNetwork = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBoxFile = (gcnew System::Windows::Forms::CheckBox());
 			this->textBoxFileLog = (gcnew System::Windows::Forms::TextBox());
 			this->groupBoxViewer = (gcnew System::Windows::Forms::GroupBox());
 			this->tabControlViewer = (gcnew System::Windows::Forms::TabControl());
@@ -86,12 +88,15 @@ namespace LoggerViewerWindows {
 			this->tabPageNetworkViewer = (gcnew System::Windows::Forms::TabPage());
 			this->textBoxNetworkViewer = (gcnew System::Windows::Forms::TextBox());
 			this->buttonGenerateLog = (gcnew System::Windows::Forms::Button());
+			this->groupBoxLogMessage = (gcnew System::Windows::Forms::GroupBox());
+			this->textBoxLogMessage = (gcnew System::Windows::Forms::TextBox());
 			this->groupBoxLoggingLevel->SuspendLayout();
 			this->groupBoxTarget->SuspendLayout();
 			this->groupBoxViewer->SuspendLayout();
 			this->tabControlViewer->SuspendLayout();
 			this->tabPageFileViewer->SuspendLayout();
 			this->tabPageNetworkViewer->SuspendLayout();
+			this->groupBoxLogMessage->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// radioButtonTraceLevel
@@ -115,54 +120,10 @@ namespace LoggerViewerWindows {
 			this->groupBoxLoggingLevel->Controls->Add(this->radioButtonTraceLevel);
 			this->groupBoxLoggingLevel->Location = System::Drawing::Point(13, 13);
 			this->groupBoxLoggingLevel->Name = L"groupBoxLoggingLevel";
-			this->groupBoxLoggingLevel->Size = System::Drawing::Size(133, 174);
+			this->groupBoxLoggingLevel->Size = System::Drawing::Size(133, 163);
 			this->groupBoxLoggingLevel->TabIndex = 1;
 			this->groupBoxLoggingLevel->TabStop = false;
 			this->groupBoxLoggingLevel->Text = L"Logging level";
-			// 
-			// radioButtonDebugLevel
-			// 
-			this->radioButtonDebugLevel->AutoSize = true;
-			this->radioButtonDebugLevel->Location = System::Drawing::Point(6, 42);
-			this->radioButtonDebugLevel->Name = L"radioButtonDebugLevel";
-			this->radioButtonDebugLevel->Size = System::Drawing::Size(57, 17);
-			this->radioButtonDebugLevel->TabIndex = 1;
-			this->radioButtonDebugLevel->TabStop = true;
-			this->radioButtonDebugLevel->Text = L"Debug";
-			this->radioButtonDebugLevel->UseVisualStyleBackColor = true;
-			// 
-			// radioButtonInfoLevel
-			// 
-			this->radioButtonInfoLevel->AutoSize = true;
-			this->radioButtonInfoLevel->Location = System::Drawing::Point(6, 66);
-			this->radioButtonInfoLevel->Name = L"radioButtonInfoLevel";
-			this->radioButtonInfoLevel->Size = System::Drawing::Size(43, 17);
-			this->radioButtonInfoLevel->TabIndex = 2;
-			this->radioButtonInfoLevel->TabStop = true;
-			this->radioButtonInfoLevel->Text = L"Info";
-			this->radioButtonInfoLevel->UseVisualStyleBackColor = true;
-			// 
-			// radioButtonWarningLevel
-			// 
-			this->radioButtonWarningLevel->AutoSize = true;
-			this->radioButtonWarningLevel->Location = System::Drawing::Point(7, 90);
-			this->radioButtonWarningLevel->Name = L"radioButtonWarningLevel";
-			this->radioButtonWarningLevel->Size = System::Drawing::Size(65, 17);
-			this->radioButtonWarningLevel->TabIndex = 3;
-			this->radioButtonWarningLevel->TabStop = true;
-			this->radioButtonWarningLevel->Text = L"Warning";
-			this->radioButtonWarningLevel->UseVisualStyleBackColor = true;
-			// 
-			// radioButtonErrorLevel
-			// 
-			this->radioButtonErrorLevel->AutoSize = true;
-			this->radioButtonErrorLevel->Location = System::Drawing::Point(6, 114);
-			this->radioButtonErrorLevel->Name = L"radioButtonErrorLevel";
-			this->radioButtonErrorLevel->Size = System::Drawing::Size(47, 17);
-			this->radioButtonErrorLevel->TabIndex = 4;
-			this->radioButtonErrorLevel->TabStop = true;
-			this->radioButtonErrorLevel->Text = L"Error";
-			this->radioButtonErrorLevel->UseVisualStyleBackColor = true;
 			// 
 			// radioButtonFatalLevel
 			// 
@@ -175,26 +136,60 @@ namespace LoggerViewerWindows {
 			this->radioButtonFatalLevel->Text = L"Fatal";
 			this->radioButtonFatalLevel->UseVisualStyleBackColor = true;
 			// 
+			// radioButtonErrorLevel
+			// 
+			this->radioButtonErrorLevel->AutoSize = true;
+			this->radioButtonErrorLevel->Location = System::Drawing::Point(6, 114);
+			this->radioButtonErrorLevel->Name = L"radioButtonErrorLevel";
+			this->radioButtonErrorLevel->Size = System::Drawing::Size(47, 17);
+			this->radioButtonErrorLevel->TabIndex = 4;
+			this->radioButtonErrorLevel->TabStop = true;
+			this->radioButtonErrorLevel->Text = L"Error";
+			this->radioButtonErrorLevel->UseVisualStyleBackColor = true;
+			// 
+			// radioButtonWarningLevel
+			// 
+			this->radioButtonWarningLevel->AutoSize = true;
+			this->radioButtonWarningLevel->Location = System::Drawing::Point(7, 90);
+			this->radioButtonWarningLevel->Name = L"radioButtonWarningLevel";
+			this->radioButtonWarningLevel->Size = System::Drawing::Size(65, 17);
+			this->radioButtonWarningLevel->TabIndex = 3;
+			this->radioButtonWarningLevel->TabStop = true;
+			this->radioButtonWarningLevel->Text = L"Warning";
+			this->radioButtonWarningLevel->UseVisualStyleBackColor = true;
+			// 
+			// radioButtonInfoLevel
+			// 
+			this->radioButtonInfoLevel->AutoSize = true;
+			this->radioButtonInfoLevel->Location = System::Drawing::Point(6, 66);
+			this->radioButtonInfoLevel->Name = L"radioButtonInfoLevel";
+			this->radioButtonInfoLevel->Size = System::Drawing::Size(43, 17);
+			this->radioButtonInfoLevel->TabIndex = 2;
+			this->radioButtonInfoLevel->TabStop = true;
+			this->radioButtonInfoLevel->Text = L"Info";
+			this->radioButtonInfoLevel->UseVisualStyleBackColor = true;
+			// 
+			// radioButtonDebugLevel
+			// 
+			this->radioButtonDebugLevel->AutoSize = true;
+			this->radioButtonDebugLevel->Location = System::Drawing::Point(6, 42);
+			this->radioButtonDebugLevel->Name = L"radioButtonDebugLevel";
+			this->radioButtonDebugLevel->Size = System::Drawing::Size(57, 17);
+			this->radioButtonDebugLevel->TabIndex = 1;
+			this->radioButtonDebugLevel->TabStop = true;
+			this->radioButtonDebugLevel->Text = L"Debug";
+			this->radioButtonDebugLevel->UseVisualStyleBackColor = true;
+			// 
 			// groupBoxTarget
 			// 
 			this->groupBoxTarget->Controls->Add(this->checkBoxNetwork);
 			this->groupBoxTarget->Controls->Add(this->checkBoxFile);
-			this->groupBoxTarget->Location = System::Drawing::Point(13, 194);
+			this->groupBoxTarget->Location = System::Drawing::Point(152, 13);
 			this->groupBoxTarget->Name = L"groupBoxTarget";
 			this->groupBoxTarget->Size = System::Drawing::Size(133, 73);
 			this->groupBoxTarget->TabIndex = 2;
 			this->groupBoxTarget->TabStop = false;
 			this->groupBoxTarget->Text = L"Target";
-			// 
-			// checkBoxFile
-			// 
-			this->checkBoxFile->AutoSize = true;
-			this->checkBoxFile->Location = System::Drawing::Point(6, 19);
-			this->checkBoxFile->Name = L"checkBoxFile";
-			this->checkBoxFile->Size = System::Drawing::Size(42, 17);
-			this->checkBoxFile->TabIndex = 0;
-			this->checkBoxFile->Text = L"File";
-			this->checkBoxFile->UseVisualStyleBackColor = true;
 			// 
 			// checkBoxNetwork
 			// 
@@ -206,21 +201,31 @@ namespace LoggerViewerWindows {
 			this->checkBoxNetwork->Text = L"Network";
 			this->checkBoxNetwork->UseVisualStyleBackColor = true;
 			// 
+			// checkBoxFile
+			// 
+			this->checkBoxFile->AutoSize = true;
+			this->checkBoxFile->Location = System::Drawing::Point(6, 19);
+			this->checkBoxFile->Name = L"checkBoxFile";
+			this->checkBoxFile->Size = System::Drawing::Size(42, 17);
+			this->checkBoxFile->TabIndex = 0;
+			this->checkBoxFile->Text = L"File";
+			this->checkBoxFile->UseVisualStyleBackColor = true;
+			// 
 			// textBoxFileLog
 			// 
 			this->textBoxFileLog->Enabled = false;
 			this->textBoxFileLog->Location = System::Drawing::Point(6, 6);
 			this->textBoxFileLog->Multiline = true;
 			this->textBoxFileLog->Name = L"textBoxFileLog";
-			this->textBoxFileLog->Size = System::Drawing::Size(378, 190);
+			this->textBoxFileLog->Size = System::Drawing::Size(502, 190);
 			this->textBoxFileLog->TabIndex = 3;
 			// 
 			// groupBoxViewer
 			// 
 			this->groupBoxViewer->Controls->Add(this->tabControlViewer);
-			this->groupBoxViewer->Location = System::Drawing::Point(156, 13);
+			this->groupBoxViewer->Location = System::Drawing::Point(12, 182);
 			this->groupBoxViewer->Name = L"groupBoxViewer";
-			this->groupBoxViewer->Size = System::Drawing::Size(411, 253);
+			this->groupBoxViewer->Size = System::Drawing::Size(535, 253);
 			this->groupBoxViewer->TabIndex = 4;
 			this->groupBoxViewer->TabStop = false;
 			this->groupBoxViewer->Text = L"Viewer";
@@ -232,7 +237,7 @@ namespace LoggerViewerWindows {
 			this->tabControlViewer->Location = System::Drawing::Point(7, 19);
 			this->tabControlViewer->Name = L"tabControlViewer";
 			this->tabControlViewer->SelectedIndex = 0;
-			this->tabControlViewer->Size = System::Drawing::Size(398, 228);
+			this->tabControlViewer->Size = System::Drawing::Size(522, 228);
 			this->tabControlViewer->TabIndex = 0;
 			// 
 			// tabPageFileViewer
@@ -241,7 +246,7 @@ namespace LoggerViewerWindows {
 			this->tabPageFileViewer->Location = System::Drawing::Point(4, 22);
 			this->tabPageFileViewer->Name = L"tabPageFileViewer";
 			this->tabPageFileViewer->Padding = System::Windows::Forms::Padding(3);
-			this->tabPageFileViewer->Size = System::Drawing::Size(390, 202);
+			this->tabPageFileViewer->Size = System::Drawing::Size(514, 202);
 			this->tabPageFileViewer->TabIndex = 0;
 			this->tabPageFileViewer->Text = L"File";
 			this->tabPageFileViewer->UseVisualStyleBackColor = true;
@@ -252,7 +257,7 @@ namespace LoggerViewerWindows {
 			this->tabPageNetworkViewer->Location = System::Drawing::Point(4, 22);
 			this->tabPageNetworkViewer->Name = L"tabPageNetworkViewer";
 			this->tabPageNetworkViewer->Padding = System::Windows::Forms::Padding(3);
-			this->tabPageNetworkViewer->Size = System::Drawing::Size(390, 202);
+			this->tabPageNetworkViewer->Size = System::Drawing::Size(514, 202);
 			this->tabPageNetworkViewer->TabIndex = 1;
 			this->tabPageNetworkViewer->Text = L"Network";
 			this->tabPageNetworkViewer->UseVisualStyleBackColor = true;
@@ -263,24 +268,43 @@ namespace LoggerViewerWindows {
 			this->textBoxNetworkViewer->Location = System::Drawing::Point(7, 4);
 			this->textBoxNetworkViewer->Multiline = true;
 			this->textBoxNetworkViewer->Name = L"textBoxNetworkViewer";
-			this->textBoxNetworkViewer->Size = System::Drawing::Size(377, 195);
+			this->textBoxNetworkViewer->Size = System::Drawing::Size(501, 195);
 			this->textBoxNetworkViewer->TabIndex = 0;
 			// 
 			// buttonGenerateLog
 			// 
-			this->buttonGenerateLog->Location = System::Drawing::Point(13, 274);
+			this->buttonGenerateLog->Location = System::Drawing::Point(158, 103);
 			this->buttonGenerateLog->Name = L"buttonGenerateLog";
-			this->buttonGenerateLog->Size = System::Drawing::Size(554, 44);
+			this->buttonGenerateLog->Size = System::Drawing::Size(389, 65);
 			this->buttonGenerateLog->TabIndex = 5;
 			this->buttonGenerateLog->Text = L"Generate Log Message";
 			this->buttonGenerateLog->UseVisualStyleBackColor = true;
 			this->buttonGenerateLog->Click += gcnew System::EventHandler(this, &MainWindow::buttonGenerateLog_Click);
 			// 
+			// groupBoxLogMessage
+			// 
+			this->groupBoxLogMessage->Controls->Add(this->textBoxLogMessage);
+			this->groupBoxLogMessage->Location = System::Drawing::Point(292, 13);
+			this->groupBoxLogMessage->Name = L"groupBoxLogMessage";
+			this->groupBoxLogMessage->Size = System::Drawing::Size(261, 73);
+			this->groupBoxLogMessage->TabIndex = 6;
+			this->groupBoxLogMessage->TabStop = false;
+			this->groupBoxLogMessage->Text = L"Log message";
+			// 
+			// textBoxLogMessage
+			// 
+			this->textBoxLogMessage->Location = System::Drawing::Point(7, 20);
+			this->textBoxLogMessage->Multiline = true;
+			this->textBoxLogMessage->Name = L"textBoxLogMessage";
+			this->textBoxLogMessage->Size = System::Drawing::Size(248, 47);
+			this->textBoxLogMessage->TabIndex = 0;
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(586, 331);
+			this->ClientSize = System::Drawing::Size(563, 440);
+			this->Controls->Add(this->groupBoxLogMessage);
 			this->Controls->Add(this->buttonGenerateLog);
 			this->Controls->Add(this->groupBoxViewer);
 			this->Controls->Add(this->groupBoxTarget);
@@ -297,11 +321,14 @@ namespace LoggerViewerWindows {
 			this->tabPageFileViewer->PerformLayout();
 			this->tabPageNetworkViewer->ResumeLayout(false);
 			this->tabPageNetworkViewer->PerformLayout();
+			this->groupBoxLogMessage->ResumeLayout(false);
+			this->groupBoxLogMessage->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void buttonGenerateLog_Click(System::Object^ sender, System::EventArgs^ e) {
+
 	}
 };
 }
