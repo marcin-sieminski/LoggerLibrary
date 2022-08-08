@@ -1,4 +1,6 @@
 #pragma once
+#include "Logger.h"
+using namespace LoggerLibrary;
 
 namespace LoggerViewerWindows {
 
@@ -55,10 +57,12 @@ namespace LoggerViewerWindows {
 	private: System::Windows::Forms::GroupBox^ groupBoxLogMessage;
 	private: System::Windows::Forms::TextBox^ textBoxLogMessage;
 	private: System::Windows::Forms::GroupBox^ groupBoxErrorId;
-	private: System::Windows::Forms::TextBox^ textBox1;
+
+
 	private: System::Windows::Forms::GroupBox^ groupBoxArea;
 	private: System::Windows::Forms::RadioButton^ radioButtonAreaAdministration;
 	private: System::Windows::Forms::RadioButton^ radioButtonAreaMain;
+	private: System::Windows::Forms::NumericUpDown^ numericUpDownErrorId;
 
 
 	protected:
@@ -96,10 +100,10 @@ namespace LoggerViewerWindows {
 			this->groupBoxLogMessage = (gcnew System::Windows::Forms::GroupBox());
 			this->textBoxLogMessage = (gcnew System::Windows::Forms::TextBox());
 			this->groupBoxErrorId = (gcnew System::Windows::Forms::GroupBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->groupBoxArea = (gcnew System::Windows::Forms::GroupBox());
-			this->radioButtonAreaMain = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonAreaAdministration = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonAreaMain = (gcnew System::Windows::Forms::RadioButton());
+			this->numericUpDownErrorId = (gcnew System::Windows::Forms::NumericUpDown());
 			this->groupBoxLoggingLevel->SuspendLayout();
 			this->groupBoxTarget->SuspendLayout();
 			this->groupBoxViewer->SuspendLayout();
@@ -109,6 +113,7 @@ namespace LoggerViewerWindows {
 			this->groupBoxLogMessage->SuspendLayout();
 			this->groupBoxErrorId->SuspendLayout();
 			this->groupBoxArea->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDownErrorId))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// radioButtonTraceLevel
@@ -312,20 +317,13 @@ namespace LoggerViewerWindows {
 			// 
 			// groupBoxErrorId
 			// 
-			this->groupBoxErrorId->Controls->Add(this->textBox1);
+			this->groupBoxErrorId->Controls->Add(this->numericUpDownErrorId);
 			this->groupBoxErrorId->Location = System::Drawing::Point(497, 19);
 			this->groupBoxErrorId->Name = L"groupBoxErrorId";
 			this->groupBoxErrorId->Size = System::Drawing::Size(93, 48);
 			this->groupBoxErrorId->TabIndex = 7;
 			this->groupBoxErrorId->TabStop = false;
 			this->groupBoxErrorId->Text = L"Error id";
-			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(6, 18);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(81, 20);
-			this->textBox1->TabIndex = 0;
 			// 
 			// groupBoxArea
 			// 
@@ -338,6 +336,17 @@ namespace LoggerViewerWindows {
 			this->groupBoxArea->TabStop = false;
 			this->groupBoxArea->Text = L"Area";
 			// 
+			// radioButtonAreaAdministration
+			// 
+			this->radioButtonAreaAdministration->AutoSize = true;
+			this->radioButtonAreaAdministration->Location = System::Drawing::Point(7, 43);
+			this->radioButtonAreaAdministration->Name = L"radioButtonAreaAdministration";
+			this->radioButtonAreaAdministration->Size = System::Drawing::Size(90, 17);
+			this->radioButtonAreaAdministration->TabIndex = 1;
+			this->radioButtonAreaAdministration->TabStop = true;
+			this->radioButtonAreaAdministration->Text = L"Administration";
+			this->radioButtonAreaAdministration->UseVisualStyleBackColor = true;
+			// 
 			// radioButtonAreaMain
 			// 
 			this->radioButtonAreaMain->AutoSize = true;
@@ -349,16 +358,17 @@ namespace LoggerViewerWindows {
 			this->radioButtonAreaMain->Text = L"Main";
 			this->radioButtonAreaMain->UseVisualStyleBackColor = true;
 			// 
-			// radioButtonAreaAdministration
+			// numericUpDownErrorId
 			// 
-			this->radioButtonAreaAdministration->AutoSize = true;
-			this->radioButtonAreaAdministration->Location = System::Drawing::Point(7, 43);
-			this->radioButtonAreaAdministration->Name = L"radioButtonAreaAdministration";
-			this->radioButtonAreaAdministration->Size = System::Drawing::Size(90, 17);
-			this->radioButtonAreaAdministration->TabIndex = 1;
-			this->radioButtonAreaAdministration->TabStop = true;
-			this->radioButtonAreaAdministration->Text = L"Administration";
-			this->radioButtonAreaAdministration->UseVisualStyleBackColor = true;
+			this->numericUpDownErrorId->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->numericUpDownErrorId->Location = System::Drawing::Point(7, 19);
+			this->numericUpDownErrorId->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 999, 0, 0, 0 });
+			this->numericUpDownErrorId->Name = L"numericUpDownErrorId";
+			this->numericUpDownErrorId->Size = System::Drawing::Size(80, 20);
+			this->numericUpDownErrorId->TabIndex = 0;
+			this->numericUpDownErrorId->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			// 
 			// MainWindow
 			// 
@@ -387,24 +397,20 @@ namespace LoggerViewerWindows {
 			this->groupBoxLogMessage->ResumeLayout(false);
 			this->groupBoxLogMessage->PerformLayout();
 			this->groupBoxErrorId->ResumeLayout(false);
-			this->groupBoxErrorId->PerformLayout();
 			this->groupBoxArea->ResumeLayout(false);
 			this->groupBoxArea->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDownErrorId))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void buttonGenerateLog_Click(System::Object^ sender, System::EventArgs^ e) {
-		auto message = ;
-		auto exceptionId = 100;
-		auto area = "Main";
-
+		auto message = textBoxLogMessage->Text;
+		auto exceptionId = numericUpDownErrorId->Value;
+		auto area = radioButtonAreaMain->Checked ? "Main" : "Admin";
+		
 		Logger::SetLevel(Logger::TraceLevel);
-
 		Logger::Trace("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
-
-		LOG_INFO(message, area);
-
 	}
 };
 }
