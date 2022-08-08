@@ -1,6 +1,4 @@
 #pragma once
-#include "Logger.h"
-using namespace LoggerLibrary;
 
 namespace LoggerViewerWindows {
 
@@ -409,8 +407,6 @@ namespace LoggerViewerWindows {
 		auto exceptionId = numericUpDownErrorId->Value;
 		auto area = radioButtonAreaMain->Checked ? "Main" : "Admin";
 		
-		Logger::SetLevel(Logger::TraceLevel);
-		Logger::Trace("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
 	}
 };
 }
