@@ -1,8 +1,7 @@
 #pragma once
 #pragma warning(disable : 4996)
-
+#include <string>
 #include <cstdio>
-#include <mutex>
 #include <ctime>
 
 namespace LoggerLibrary
@@ -17,8 +16,7 @@ namespace LoggerLibrary
 
 	private:
 		LogLevel level = InfoLevel;
-		std::mutex log_mutex;
-
+		
 		const char* filepath = 0;
 		std::FILE* file = 0;
 
@@ -39,7 +37,7 @@ namespace LoggerLibrary
 		static bool EnableFileOutput()
 		{
 			Logger& logger_instance = get_instance();
-			logger_instance.filepath = "log.txt";
+			logger_instance.filepath = "c:/logs/logger-log.txt";
 			return logger_instance.enable_file_output();
 		}
 
@@ -168,7 +166,6 @@ namespace LoggerLibrary
 				std::time_t current_time = std::time(0);
 				std::tm* timestamp = std::localtime(&current_time);
 
-				std::scoped_lock lock(log_mutex);
 				std::strftime(buffer, 80, timestamp_format, timestamp);
 				std::printf("%s    ", buffer);
 				std::printf(message_priority_str);
@@ -195,7 +192,6 @@ namespace LoggerLibrary
 				char buffer[80];
 				strftime(buffer, 80, "%c", timestamp);
 
-				std::scoped_lock lock(log_mutex);
 				printf("%s\t", buffer);
 				printf(message_priority_str);
 				printf(message, args...);
