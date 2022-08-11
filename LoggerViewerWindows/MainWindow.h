@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <boost/algorithm/string.hpp>
 
 namespace LoggerViewerWindows {
 
@@ -109,6 +110,7 @@ namespace LoggerViewerWindows {
 			this->checkBoxFile = (gcnew System::Windows::Forms::CheckBox());
 			this->textBoxFileLog = (gcnew System::Windows::Forms::TextBox());
 			this->groupBoxViewer = (gcnew System::Windows::Forms::GroupBox());
+			this->buttonReadFile = (gcnew System::Windows::Forms::Button());
 			this->tabControlViewer = (gcnew System::Windows::Forms::TabControl());
 			this->tabPageFileViewer = (gcnew System::Windows::Forms::TabPage());
 			this->tabPageNetworkViewer = (gcnew System::Windows::Forms::TabPage());
@@ -128,7 +130,6 @@ namespace LoggerViewerWindows {
 			this->radioButtonInfoLevelMessage = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonDebugLevelMessage = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonTraceLevelMessage = (gcnew System::Windows::Forms::RadioButton());
-			this->buttonReadFile = (gcnew System::Windows::Forms::Button());
 			this->groupBoxLoggingLevel->SuspendLayout();
 			this->groupBoxTarget->SuspendLayout();
 			this->groupBoxViewer->SuspendLayout();
@@ -254,10 +255,11 @@ namespace LoggerViewerWindows {
 			// 
 			// textBoxFileLog
 			// 
-			this->textBoxFileLog->Enabled = false;
 			this->textBoxFileLog->Location = System::Drawing::Point(6, 0);
 			this->textBoxFileLog->Multiline = true;
 			this->textBoxFileLog->Name = L"textBoxFileLog";
+			this->textBoxFileLog->ReadOnly = true;
+			this->textBoxFileLog->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->textBoxFileLog->Size = System::Drawing::Size(713, 196);
 			this->textBoxFileLog->TabIndex = 3;
 			// 
@@ -271,6 +273,16 @@ namespace LoggerViewerWindows {
 			this->groupBoxViewer->TabIndex = 4;
 			this->groupBoxViewer->TabStop = false;
 			this->groupBoxViewer->Text = L"Viewer";
+			// 
+			// buttonReadFile
+			// 
+			this->buttonReadFile->Location = System::Drawing::Point(11, 254);
+			this->buttonReadFile->Name = L"buttonReadFile";
+			this->buttonReadFile->Size = System::Drawing::Size(75, 23);
+			this->buttonReadFile->TabIndex = 1;
+			this->buttonReadFile->Text = L"Read File";
+			this->buttonReadFile->UseVisualStyleBackColor = true;
+			this->buttonReadFile->Click += gcnew System::EventHandler(this, &MainWindow::buttonReadFile_Click);
 			// 
 			// tabControlViewer
 			// 
@@ -474,16 +486,6 @@ namespace LoggerViewerWindows {
 			this->radioButtonTraceLevelMessage->Text = L"Trace";
 			this->radioButtonTraceLevelMessage->UseVisualStyleBackColor = true;
 			// 
-			// buttonReadFile
-			// 
-			this->buttonReadFile->Location = System::Drawing::Point(11, 254);
-			this->buttonReadFile->Name = L"buttonReadFile";
-			this->buttonReadFile->Size = System::Drawing::Size(75, 23);
-			this->buttonReadFile->TabIndex = 1;
-			this->buttonReadFile->Text = L"Read File";
-			this->buttonReadFile->UseVisualStyleBackColor = true;
-			this->buttonReadFile->Click += gcnew System::EventHandler(this, &MainWindow::buttonReadFile_Click);
-			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -591,9 +593,9 @@ namespace LoggerViewerWindows {
 	}
 	private: System::Void buttonReadFile_Click(System::Object^ sender, System::EventArgs^ e) {
 		std::ifstream logFile("c:/logs/logger-log.txt");
-		std::string logText((std::istreambuf_iterator<char>(logFile)),
-			(std::istreambuf_iterator<char>()));
-		textBoxFileLog->Text = gcnew String(logText.data());
+		std::string logText((std::istreambuf_iterator<char>(logFile)),(std::istreambuf_iterator<char>()));
+		std::string newLineInsertedLogText = boost::replace_all_copy(logText, "\n", "\r\n");
+		textBoxFileLog->Text = gcnew String(newLineInsertedLogText.data());
 	}
 	};
 }
