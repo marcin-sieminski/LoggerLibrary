@@ -1,9 +1,6 @@
 #pragma once
 #include "Logger.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <boost/algorithm/string.hpp>
+#include "LoggerViewerModel.h"
 
 namespace LoggerViewerWindows {
 
@@ -527,8 +524,10 @@ namespace LoggerViewerWindows {
 		auto message = textBoxLogMessage->Text;
 		const auto exceptionId = safe_cast<int>(numericUpDownErrorId->Value);
 		auto area = radioButtonAreaMain->Checked ? "Main" : "Admin";
-
 		LoggerLibrary::Logger::LogLevel loggingLevel;
+		LoggerLibrary::Logger::LogLevel logMessageLevel;
+		bool enableFileOutput = false;
+		bool enableNetworkOutput = false;
 
 		if (radioButtonTraceLevel->Checked)
 		{
@@ -555,47 +554,47 @@ namespace LoggerViewerWindows {
 			loggingLevel = LoggerLibrary::Logger::FatalLevel;
 		}
 
-		LoggerLibrary::Logger::SetLevel(loggingLevel);
-
 		if (checkBoxFile->Checked)
 		{
-			LoggerLibrary::Logger::EnableFileOutput();
+			enableFileOutput = true;
 		}
 		if (checkBoxNetwork->Checked)
 		{
-			//LoggerLibrary::Logger::EnableNetworkOutput();
+			enableNetworkOutput = true;
 		}
 
 		if (radioButtonTraceLevelMessage->Checked)
 		{
-			LoggerLibrary::Logger::Trace("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
+			logMessageLevel = LoggerLibrary::Logger::TraceLevel;
 		}
 		else if (radioButtonDebugLevelMessage->Checked)
 		{
-			LoggerLibrary::Logger::Debug("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
+			logMessageLevel = LoggerLibrary::Logger::DebugLevel;
 		}
 		else if (radioButtonInfoLevelMessage->Checked)
 		{
-			LoggerLibrary::Logger::Info("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
+			logMessageLevel = LoggerLibrary::Logger::InfoLevel;
 		}
 		else if (radioButtonWarningLevelMessage->Checked)
 		{
-			LoggerLibrary::Logger::Warning("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
+			logMessageLevel = LoggerLibrary::Logger::WarningLevel;
 		}
 		else if (radioButtonErrorLevelMessage->Checked)
 		{
-			LoggerLibrary::Logger::Error("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
+			logMessageLevel = LoggerLibrary::Logger::ErrorLevel;
 		}
 		else
 		{
-			LoggerLibrary::Logger::Fatal("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
+			logMessageLevel = LoggerLibrary::Logger::FatalLevel;
 		}
+
+
+		LoggerViewerModel::LoggerViewerModel::Log(message, exceptionId, area, loggingLevel, enableFileOutput, enableNetworkOutput, logMessageLevel);
+
 	}
 	private: System::Void buttonReadFile_Click(System::Object^ sender, System::EventArgs^ e) {
-		std::ifstream logFile("c:/logs/logger-log.txt");
-		std::string logText((std::istreambuf_iterator<char>(logFile)),(std::istreambuf_iterator<char>()));
-		std::string newLineInsertedLogText = boost::replace_all_copy(logText, "\n", "\r\n");
-		textBoxFileLog->Text = gcnew String(newLineInsertedLogText.data());
+
+		textBoxFileLog->Text = LoggerViewerModel::LoggerViewerModel::ReadLogFile();
 	}
 	};
 }
