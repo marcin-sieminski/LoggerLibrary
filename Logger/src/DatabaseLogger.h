@@ -3,8 +3,9 @@
 
 namespace LoggerLibrary
 {
-	class FileLogger : public Logger
+
+	class DatabaseLogger : public Logger
 	{
-		
 	};
+
 }

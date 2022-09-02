@@ -8,7 +8,7 @@
 
 namespace LoggerLibrary
 {
-	class NetworkLogger : Logger
+	class NetworkLogger : public Logger
 	{
 		
 	};

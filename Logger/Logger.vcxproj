@@ -155,15 +155,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\PosgreSQLDBLogger.cpp" />
+    <ClCompile Include="src\SQLServerDBLogger.cpp" />
+    <ClCompile Include="src\ConsoleLogger.cpp" />
+    <ClCompile Include="src\DatabaseLogger.cpp" />
     <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\WindowsEventLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\PosgreSQLDBLogger.h" />
+    <ClInclude Include="src\SQLServerDBLogger.h" />
+    <ClInclude Include="src\ConsoleLogger.h" />
+    <ClInclude Include="src\DatabaseLogger.h" />
     <ClInclude Include="src\FileLogger.h" />
     <ClInclude Include="src\NetworkLogger.h" />
     <ClInclude Include="src\Logger.h" />
+    <ClInclude Include="src\WindowsEventLogger.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagramLogger.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

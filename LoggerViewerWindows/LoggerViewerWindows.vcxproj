@@ -142,7 +142,6 @@
     <ClInclude Include="MainWindow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Services.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainWindow.resx">
@@ -153,9 +152,6 @@
     <ProjectReference Include="..\Logger\Logger.vcxproj">
       <Project>{ad3dd9be-2868-4623-a641-921cf7dcb92f}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
