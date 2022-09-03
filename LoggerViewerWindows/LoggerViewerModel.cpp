@@ -1,3 +1,13 @@
+/**
+
+    @file      LoggerViewerModel.cpp
+    @brief     LoggerViewerModel
+    @details   ~
+    @author    Marcin Siemiñski
+    @date      3.09.2022
+    @copyright © Marcin Siemiñski, 2022. All right reserved.
+
+**/
 #include "LoggerViewerModel.h"
 #include "Logger.h"
 #include <fstream>
@@ -7,7 +17,10 @@
 
 namespace LoggerViewerModel
 {
-
+ /**
+     @brief  LoggerViewerModel class.
+     @retval  - 
+ **/
 	System::String^ LoggerViewerModel::ReadLogFile()
 	{
 		std::ifstream logFile("c:/logs/logger-log.txt");

@@ -1,14 +1,38 @@
+/**
+
+    @file      Logger.h
+    @brief     Logger header file.
+    @details   ~
+    @author    Marcin Siemiñski
+    @date      3.09.2022
+    @copyright © Marcin Siemiñski, 2022. All right reserved.
+
+**/
 #pragma once
 #pragma warning(disable : 4996)
 #include <string>
 #include <cstdio>
 #include <ctime>
-
+/**
+    @namespace LoggerLibrary
+    @brief     Logger Library namespace.
+**/
 namespace LoggerLibrary
 {
+ /**
+
+     @class   Logger
+     @brief   Logger class.
+     @details ~
+
+ **/
 	class Logger
 	{
 	public:
+  /**
+      @enum  LoggerLibrary::Logger::LogLevel
+      @brief Log level enum.
+  **/
 		enum LogLevel
 		{
 			TraceLevel, DebugLevel, InfoLevel, WarningLevel, ErrorLevel, FatalLevel
@@ -16,13 +40,10 @@ namespace LoggerLibrary
 
 	private:
 		LogLevel level = InfoLevel;
-		
 		const char* filepath = 0;
 		std::FILE* file = 0;
-
 		char buffer[80];
 		const char* timestamp_format = "%T  %d-%m-%Y";
-
 	public:
 		static void SetLevel(LogLevel new_level)
 		{

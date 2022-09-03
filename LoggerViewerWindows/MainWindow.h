@@ -1,3 +1,13 @@
+/**
+
+    @file      MainWindow.h
+    @brief     MainWindow class.
+    @details   ~
+    @author    Marcin Siemiñski
+    @date      3.09.2022
+    @copyright © Marcin Siemiñski, 2022. All right reserved.
+
+**/
 #pragma once
 #include "Logger.h"
 #include "LoggerViewerModel.h"
@@ -11,9 +21,13 @@ namespace LoggerViewerWindows {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Summary for MainWindow
-	/// </summary>
+ /**
+
+     @class   MainWindow
+     @brief   MainWindow class.
+     @details ~
+
+ **/
 	public ref class MainWindow : public System::Windows::Forms::Form
 	{
 	public:
