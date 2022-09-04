@@ -18,7 +18,7 @@
 namespace LoggerViewerModel
 {
 	/**
-		@brief  LoggerViewerModel class.
+		@brief  ReadLogFile
 		@retval  -
 	**/
 	System::String^ LoggerViewerModel::ReadLogFile()
@@ -29,8 +29,17 @@ namespace LoggerViewerModel
 		auto text = gcnew System::String(newLineInsertedLogText.data());
 		return text;
 	}
-
-	void LoggerViewerModel::Log(System::String^ message, const int exceptionId, const char* area, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, LoggerLibrary::Logger::LogLevel logMessageLevel)
+	/**
+		@brief Log
+		@param message             -
+		@param exceptionId         -
+		@param area                -
+		@param loggingLevel        -
+		@param enableFileOutput    -
+		@param enableNetworkOutput -
+		@param logMessageLevel     -
+	**/
+	void LoggerViewerModel::Log(System::String^ message, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, LoggerLibrary::Logger::LogLevel logMessageLevel)
 	{
 		LoggerLibrary::FileLogger* logger = new LoggerLibrary::FileLogger();
 		msclr::interop::marshal_context oMarshalContext;
@@ -43,22 +52,22 @@ namespace LoggerViewerModel
 			switch (logMessageLevel)
 			{
 			case LoggerLibrary::Logger::TraceLevel:
-				logger->Log("Trace", logMessageLevel, messageInput, exceptionId, area);
+				logger->Log("Trace", logMessageLevel, messageInput);
 				break;
 			case LoggerLibrary::Logger::DebugLevel:
-				logger->Log("Debug", logMessageLevel, messageInput, exceptionId, area);
+				logger->Log("Debug", logMessageLevel, messageInput);
 				break;
 			case LoggerLibrary::Logger::InfoLevel:
-				logger->Log("Info", logMessageLevel, messageInput, exceptionId, area);
+				logger->Log("Info", logMessageLevel, messageInput);
 				break;
 			case LoggerLibrary::Logger::WarningLevel:
-				logger->Log("Warning", logMessageLevel, messageInput, exceptionId, area);
+				logger->Log("Warning", logMessageLevel, messageInput);
 				break;
 			case LoggerLibrary::Logger::ErrorLevel:
-				logger->Log("Error", logMessageLevel, messageInput, exceptionId, area);
+				logger->Log("Error", logMessageLevel, messageInput);
 				break;
 			case LoggerLibrary::Logger::FatalLevel:
-				logger->Log("Fatal", logMessageLevel, messageInput, exceptionId, area);
+				logger->Log("Fatal", logMessageLevel, messageInput);
 				break;
 			}
 		}

@@ -24,7 +24,7 @@ namespace LoggerViewerModel
 	{
 	public:
 		static System::String^ ReadLogFile();
-		static void Log(System::String^ message, const int exceptionId, const char* area, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, LoggerLibrary::Logger::LogLevel logMessageLevel);
+		static void Log(System::String^ message, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, LoggerLibrary::Logger::LogLevel logMessageLevel);
 	};
 
 }

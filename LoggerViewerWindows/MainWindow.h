@@ -70,13 +70,13 @@ namespace LoggerViewerWindows {
 	private: System::Windows::Forms::Button^ buttonGenerateLog;
 	private: System::Windows::Forms::GroupBox^ groupBoxLogMessage;
 	private: System::Windows::Forms::TextBox^ textBoxLogMessage;
-	private: System::Windows::Forms::GroupBox^ groupBoxErrorId;
 
 
-	private: System::Windows::Forms::GroupBox^ groupBoxArea;
-	private: System::Windows::Forms::RadioButton^ radioButtonAreaAdministration;
-	private: System::Windows::Forms::RadioButton^ radioButtonAreaMain;
-	private: System::Windows::Forms::NumericUpDown^ numericUpDownErrorId;
+
+
+
+
+
 	private: System::Windows::Forms::GroupBox^ groupBoxLogMessageLevel;
 	private: System::Windows::Forms::RadioButton^ radioButtonFatalLevelMessage;
 
@@ -90,6 +90,7 @@ namespace LoggerViewerWindows {
 
 	private: System::Windows::Forms::RadioButton^ radioButtonTraceLevelMessage;
 	private: System::Windows::Forms::Button^ buttonReadFile;
+	private: System::Windows::Forms::Button^ buttonClear;
 
 
 
@@ -121,6 +122,7 @@ namespace LoggerViewerWindows {
 			this->checkBoxFile = (gcnew System::Windows::Forms::CheckBox());
 			this->textBoxFileLog = (gcnew System::Windows::Forms::TextBox());
 			this->groupBoxViewer = (gcnew System::Windows::Forms::GroupBox());
+			this->buttonClear = (gcnew System::Windows::Forms::Button());
 			this->buttonReadFile = (gcnew System::Windows::Forms::Button());
 			this->tabControlViewer = (gcnew System::Windows::Forms::TabControl());
 			this->tabPageFileViewer = (gcnew System::Windows::Forms::TabPage());
@@ -129,11 +131,6 @@ namespace LoggerViewerWindows {
 			this->buttonGenerateLog = (gcnew System::Windows::Forms::Button());
 			this->groupBoxLogMessage = (gcnew System::Windows::Forms::GroupBox());
 			this->textBoxLogMessage = (gcnew System::Windows::Forms::TextBox());
-			this->groupBoxErrorId = (gcnew System::Windows::Forms::GroupBox());
-			this->numericUpDownErrorId = (gcnew System::Windows::Forms::NumericUpDown());
-			this->groupBoxArea = (gcnew System::Windows::Forms::GroupBox());
-			this->radioButtonAreaAdministration = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButtonAreaMain = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBoxLogMessageLevel = (gcnew System::Windows::Forms::GroupBox());
 			this->radioButtonFatalLevelMessage = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonErrorLevelMessage = (gcnew System::Windows::Forms::RadioButton());
@@ -148,9 +145,6 @@ namespace LoggerViewerWindows {
 			this->tabPageFileViewer->SuspendLayout();
 			this->tabPageNetworkViewer->SuspendLayout();
 			this->groupBoxLogMessage->SuspendLayout();
-			this->groupBoxErrorId->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDownErrorId))->BeginInit();
-			this->groupBoxArea->SuspendLayout();
 			this->groupBoxLogMessageLevel->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -235,7 +229,7 @@ namespace LoggerViewerWindows {
 			// 
 			this->groupBoxTarget->Controls->Add(this->checkBoxNetwork);
 			this->groupBoxTarget->Controls->Add(this->checkBoxFile);
-			this->groupBoxTarget->Location = System::Drawing::Point(545, 74);
+			this->groupBoxTarget->Location = System::Drawing::Point(315, 109);
 			this->groupBoxTarget->Name = L"groupBoxTarget";
 			this->groupBoxTarget->Size = System::Drawing::Size(210, 76);
 			this->groupBoxTarget->TabIndex = 2;
@@ -276,6 +270,7 @@ namespace LoggerViewerWindows {
 			// 
 			// groupBoxViewer
 			// 
+			this->groupBoxViewer->Controls->Add(this->buttonClear);
 			this->groupBoxViewer->Controls->Add(this->buttonReadFile);
 			this->groupBoxViewer->Controls->Add(this->tabControlViewer);
 			this->groupBoxViewer->Location = System::Drawing::Point(12, 191);
@@ -284,6 +279,16 @@ namespace LoggerViewerWindows {
 			this->groupBoxViewer->TabIndex = 4;
 			this->groupBoxViewer->TabStop = false;
 			this->groupBoxViewer->Text = L"Viewer";
+			// 
+			// buttonClear
+			// 
+			this->buttonClear->Location = System::Drawing::Point(93, 253);
+			this->buttonClear->Name = L"buttonClear";
+			this->buttonClear->Size = System::Drawing::Size(75, 23);
+			this->buttonClear->TabIndex = 2;
+			this->buttonClear->Text = L"Clear";
+			this->buttonClear->UseVisualStyleBackColor = true;
+			this->buttonClear->Click += gcnew System::EventHandler(this, &MainWindow::buttonClear_Click);
 			// 
 			// buttonReadFile
 			// 
@@ -338,9 +343,9 @@ namespace LoggerViewerWindows {
 			// 
 			// buttonGenerateLog
 			// 
-			this->buttonGenerateLog->Location = System::Drawing::Point(316, 157);
+			this->buttonGenerateLog->Location = System::Drawing::Point(531, 121);
 			this->buttonGenerateLog->Name = L"buttonGenerateLog";
-			this->buttonGenerateLog->Size = System::Drawing::Size(439, 28);
+			this->buttonGenerateLog->Size = System::Drawing::Size(214, 53);
 			this->buttonGenerateLog->TabIndex = 5;
 			this->buttonGenerateLog->Text = L"Generate Log Message";
 			this->buttonGenerateLog->UseVisualStyleBackColor = true;
@@ -351,7 +356,7 @@ namespace LoggerViewerWindows {
 			this->groupBoxLogMessage->Controls->Add(this->textBoxLogMessage);
 			this->groupBoxLogMessage->Location = System::Drawing::Point(315, 19);
 			this->groupBoxLogMessage->Name = L"groupBoxLogMessage";
-			this->groupBoxLogMessage->Size = System::Drawing::Size(341, 48);
+			this->groupBoxLogMessage->Size = System::Drawing::Size(427, 83);
 			this->groupBoxLogMessage->TabIndex = 6;
 			this->groupBoxLogMessage->TabStop = false;
 			this->groupBoxLogMessage->Text = L"Log message";
@@ -359,66 +364,10 @@ namespace LoggerViewerWindows {
 			// textBoxLogMessage
 			// 
 			this->textBoxLogMessage->Location = System::Drawing::Point(7, 20);
+			this->textBoxLogMessage->Multiline = true;
 			this->textBoxLogMessage->Name = L"textBoxLogMessage";
-			this->textBoxLogMessage->Size = System::Drawing::Size(328, 20);
+			this->textBoxLogMessage->Size = System::Drawing::Size(420, 63);
 			this->textBoxLogMessage->TabIndex = 0;
-			// 
-			// groupBoxErrorId
-			// 
-			this->groupBoxErrorId->Controls->Add(this->numericUpDownErrorId);
-			this->groupBoxErrorId->Location = System::Drawing::Point(662, 19);
-			this->groupBoxErrorId->Name = L"groupBoxErrorId";
-			this->groupBoxErrorId->Size = System::Drawing::Size(93, 48);
-			this->groupBoxErrorId->TabIndex = 7;
-			this->groupBoxErrorId->TabStop = false;
-			this->groupBoxErrorId->Text = L"Error id";
-			// 
-			// numericUpDownErrorId
-			// 
-			this->numericUpDownErrorId->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->numericUpDownErrorId->Location = System::Drawing::Point(7, 19);
-			this->numericUpDownErrorId->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 999, 0, 0, 0 });
-			this->numericUpDownErrorId->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
-			this->numericUpDownErrorId->Name = L"numericUpDownErrorId";
-			this->numericUpDownErrorId->Size = System::Drawing::Size(80, 20);
-			this->numericUpDownErrorId->TabIndex = 0;
-			this->numericUpDownErrorId->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
-			this->numericUpDownErrorId->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
-			// 
-			// groupBoxArea
-			// 
-			this->groupBoxArea->Controls->Add(this->radioButtonAreaAdministration);
-			this->groupBoxArea->Controls->Add(this->radioButtonAreaMain);
-			this->groupBoxArea->Location = System::Drawing::Point(316, 74);
-			this->groupBoxArea->Name = L"groupBoxArea";
-			this->groupBoxArea->Size = System::Drawing::Size(223, 76);
-			this->groupBoxArea->TabIndex = 8;
-			this->groupBoxArea->TabStop = false;
-			this->groupBoxArea->Text = L"Area";
-			// 
-			// radioButtonAreaAdministration
-			// 
-			this->radioButtonAreaAdministration->AutoSize = true;
-			this->radioButtonAreaAdministration->Location = System::Drawing::Point(7, 43);
-			this->radioButtonAreaAdministration->Name = L"radioButtonAreaAdministration";
-			this->radioButtonAreaAdministration->Size = System::Drawing::Size(90, 17);
-			this->radioButtonAreaAdministration->TabIndex = 1;
-			this->radioButtonAreaAdministration->Text = L"Administration";
-			this->radioButtonAreaAdministration->UseVisualStyleBackColor = true;
-			// 
-			// radioButtonAreaMain
-			// 
-			this->radioButtonAreaMain->AutoSize = true;
-			this->radioButtonAreaMain->Checked = true;
-			this->radioButtonAreaMain->Location = System::Drawing::Point(7, 20);
-			this->radioButtonAreaMain->Name = L"radioButtonAreaMain";
-			this->radioButtonAreaMain->Size = System::Drawing::Size(48, 17);
-			this->radioButtonAreaMain->TabIndex = 0;
-			this->radioButtonAreaMain->TabStop = true;
-			this->radioButtonAreaMain->Text = L"Main";
-			this->radioButtonAreaMain->UseVisualStyleBackColor = true;
 			// 
 			// groupBoxLogMessageLevel
 			// 
@@ -502,8 +451,6 @@ namespace LoggerViewerWindows {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(775, 487);
-			this->Controls->Add(this->groupBoxArea);
-			this->Controls->Add(this->groupBoxErrorId);
 			this->Controls->Add(this->groupBoxLogMessage);
 			this->Controls->Add(this->groupBoxTarget);
 			this->Controls->Add(this->buttonGenerateLog);
@@ -524,10 +471,6 @@ namespace LoggerViewerWindows {
 			this->tabPageNetworkViewer->PerformLayout();
 			this->groupBoxLogMessage->ResumeLayout(false);
 			this->groupBoxLogMessage->PerformLayout();
-			this->groupBoxErrorId->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDownErrorId))->EndInit();
-			this->groupBoxArea->ResumeLayout(false);
-			this->groupBoxArea->PerformLayout();
 			this->groupBoxLogMessageLevel->ResumeLayout(false);
 			this->groupBoxLogMessageLevel->PerformLayout();
 			this->ResumeLayout(false);
@@ -536,8 +479,6 @@ namespace LoggerViewerWindows {
 #pragma endregion
 	private: System::Void buttonGenerateLog_Click(System::Object^ sender, System::EventArgs^ e) {
 		auto message = textBoxLogMessage->Text;
-		const auto exceptionId = safe_cast<int>(numericUpDownErrorId->Value);
-		auto area = radioButtonAreaMain->Checked ? "Main" : "Admin";
 		LoggerLibrary::Logger::LogLevel loggingLevel;
 		LoggerLibrary::Logger::LogLevel logMessageLevel;
 		bool enableFileOutput = false;
@@ -603,12 +544,17 @@ namespace LoggerViewerWindows {
 		}
 
 
-		LoggerViewerModel::LoggerViewerModel::Log(message, exceptionId, area, loggingLevel, enableFileOutput, enableNetworkOutput, logMessageLevel);
+		LoggerViewerModel::LoggerViewerModel::Log(message, loggingLevel, enableFileOutput, enableNetworkOutput, logMessageLevel);
 
 	}
+
 	private: System::Void buttonReadFile_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		textBoxFileLog->Text = LoggerViewerModel::LoggerViewerModel::ReadLogFile();
 	}
-	};
+
+	private: System::Void buttonClear_Click(System::Object^ sender, System::EventArgs^ e) {
+		textBoxFileLog->Text = "";
+	}
+};
 }

@@ -30,10 +30,9 @@ namespace LoggerLibrary
       @param  message_priority_str - message priority description
       @param  message_priority     - message priority enum
       @param  message              - log message
-      @param  args                 - template parameter pack
   **/
 		template<typename... Args>
-		void Log(const char* message_priority_str, LogLevel message_priority, const char* message, Args... args)
+		void Log(const char* message_priority_str, LogLevel message_priority, const char* message)
 		{
 			if (level <= message_priority)
 			{
@@ -42,9 +41,11 @@ namespace LoggerLibrary
 
 				std::strftime(buffer, 80, timestamp_format, timestamp);
 				std::printf("%s    ", buffer);
+				std::printf("[");
 				std::printf(message_priority_str);
+				std::printf("]");
 				std::printf("\t");
-				std::printf(message, args...);
+				std::printf(message);
 				std::printf("\n");
 			}
 		}

@@ -53,9 +53,9 @@ namespace LoggerLibrary
 		{
 			free_file();
 		}
-	
+
 		template<typename... Args>
-		void Log(const char* message_priority_str, LogLevel message_priority, const char* message, Args... args)
+		void Log(const char* message_priority_str, LogLevel message_priority, const char* message)
 		{
 			if (level <= message_priority && file)
 			{
@@ -64,10 +64,14 @@ namespace LoggerLibrary
 				std::strftime(buffer, 80, timestamp_format, timestamp);
 
 				std::fprintf(file, "%s    ", buffer);
+				std::fprintf(file, "[");
 				std::fprintf(file, message_priority_str);
+				std::fprintf(file, "]");
 				std::fprintf(file, "\t");
-				std::fprintf(file, message, args...);
+				std::fprintf(file, message);
 				std::fprintf(file, "\n");
+
+				free_file();
 			}
 		}
 

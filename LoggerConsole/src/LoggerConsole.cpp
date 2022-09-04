@@ -10,7 +10,7 @@ int main()
 
     ConsoleLogger* logger = new ConsoleLogger();
     logger->SetLevel(ConsoleLogger::TraceLevel);
-	logger->Log("Trace", ConsoleLogger::TraceLevel, message, exceptionId, area);
+	logger->Log("Trace", ConsoleLogger::TraceLevel, message);
 
     return 0;
 }
