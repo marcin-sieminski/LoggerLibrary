@@ -27,33 +27,43 @@ namespace LoggerLibrary
 		std::FILE* file = 0;
 
 	public:
-		bool EnableFileOutput()
-		{
-			filepath = "c:/logs/logger-log.txt";
-			return enable_file_output();
-		}
+		/**
+			@brief  EnableFileOutput method
+			@retval  - true if file output enabled
+		**/
+		bool EnableFileOutput();
 
-		bool EnableFileOutput(const char* new_filepath)
-		{
-			filepath = new_filepath;
-			return enable_file_output();
-		}
+		/**
+			@brief EnableFileOutput method with new file path
+			@param  new_filepath - new file path
+			@retval              - true if file output enabled
+		**/
+		bool EnableFileOutput(const char* new_filepath);
 
-		const char* GetFilepath()
-		{
-			return filepath;
-		}
+		/**
+			@brief  GetFilepath method
+			@retval  - File path
+		**/
+		const char* GetFilepath();
 
-		bool IsFileOutputEnabled()
-		{
-			return file != 0;
-		}
+		/**
+			@brief  IsFileOutputEnabled method
+			@retval  - true if file output enabled
+		**/
+		bool IsFileOutputEnabled();
 
-		~FileLogger()
-		{
-			free_file();
-		}
+		/**
+			@brief FileLogger object destructor
+		**/
+		~FileLogger();
 
+		/**
+			@brief	Log method
+			@tparam Args                 - template parameter pack type
+			@param  message_priority_str - message priority description
+			@param  message_priority     - message priority
+			@param  message              - message
+		**/
 		template<typename... Args>
 		void Log(const char* message_priority_str, LogLevel message_priority, const char* message)
 		{
@@ -76,24 +86,15 @@ namespace LoggerLibrary
 		}
 
 	private:
-		bool enable_file_output()
-		{
-			free_file();
-			file = std::fopen(filepath, "a");
-			if (file == 0)
-			{
-				return false;
-			}
-			return true;
-		}
+		/**
+			@brief	Enable file output method
+			@retval  - true if file output enabled
+		**/
+		bool enable_file_output();
 
-		void free_file()
-		{
-			if (file)
-			{
-				std::fclose(file);
-				file = 0;
-			}
-		}
+		/**
+			@brief	Free file method
+		**/
+		void free_file();
 	};
 }

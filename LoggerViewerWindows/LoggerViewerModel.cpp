@@ -17,33 +17,22 @@
 
 namespace LoggerViewerModel
 {
-	/**
-		@brief  ReadLogFile
-		@retval  -
-	**/
 	System::String^ LoggerViewerModel::ReadLogFile()
 	{
-		std::ifstream logFile("c:/logs/logger-log.txt");
+		std::ifstream logFile("c:/logs/default_log.txt");
 		std::string logText((std::istreambuf_iterator<char>(logFile)), (std::istreambuf_iterator<char>()));
 		std::string newLineInsertedLogText = boost::replace_all_copy(logText, "\n", "\r\n");
 		auto text = gcnew System::String(newLineInsertedLogText.data());
 		return text;
 	}
-	/**
-		@brief Log
-		@param message             -
-		@param exceptionId         -
-		@param area                -
-		@param loggingLevel        -
-		@param enableFileOutput    -
-		@param enableNetworkOutput -
-		@param logMessageLevel     -
-	**/
+
 	void LoggerViewerModel::Log(System::String^ message, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, LoggerLibrary::Logger::LogLevel logMessageLevel)
 	{
 		LoggerLibrary::FileLogger* logger = new LoggerLibrary::FileLogger();
+
 		msclr::interop::marshal_context oMarshalContext;
 		const char* messageInput = oMarshalContext.marshal_as<const char*>(message);
+
 		logger->SetLevel(loggingLevel);
 
 		if (enableFileOutput)
