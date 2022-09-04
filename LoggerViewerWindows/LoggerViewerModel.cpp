@@ -1,26 +1,26 @@
 /**
 
-    @file      LoggerViewerModel.cpp
-    @brief     LoggerViewerModel
-    @details   ~
-    @author    Marcin Siemiñski
-    @date      3.09.2022
-    @copyright © Marcin Siemiñski, 2022. All right reserved.
+	@file      LoggerViewerModel.cpp
+	@brief     LoggerViewerModel
+	@details   ~
+	@author    Marcin Siemiñski
+	@date      3.09.2022
+	@copyright © Marcin Siemiñski, 2022. All right reserved.
 
 **/
 #include "LoggerViewerModel.h"
-#include "Logger.h"
+#include "FileLogger.h"
 #include <fstream>
 #include <string>
 #include <boost/algorithm/string.hpp>
-
+#include <msclr/marshal.h>
 
 namespace LoggerViewerModel
 {
- /**
-     @brief  LoggerViewerModel class.
-     @retval  - 
- **/
+	/**
+		@brief  LoggerViewerModel class.
+		@retval  -
+	**/
 	System::String^ LoggerViewerModel::ReadLogFile()
 	{
 		std::ifstream logFile("c:/logs/logger-log.txt");
@@ -32,37 +32,42 @@ namespace LoggerViewerModel
 
 	void LoggerViewerModel::Log(System::String^ message, const int exceptionId, const char* area, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, LoggerLibrary::Logger::LogLevel logMessageLevel)
 	{
-		LoggerLibrary::Logger::SetLevel(loggingLevel);
+		LoggerLibrary::FileLogger* logger = new LoggerLibrary::FileLogger();
+		msclr::interop::marshal_context oMarshalContext;
+		const char* messageInput = oMarshalContext.marshal_as<const char*>(message);
+		logger->SetLevel(loggingLevel);
 
 		if (enableFileOutput)
 		{
-			LoggerLibrary::Logger::EnableFileOutput();
+			logger->EnableFileOutput();
+			switch (logMessageLevel)
+			{
+			case LoggerLibrary::Logger::TraceLevel:
+				logger->Log("Trace", logMessageLevel, messageInput, exceptionId, area);
+				break;
+			case LoggerLibrary::Logger::DebugLevel:
+				logger->Log("Debug", logMessageLevel, messageInput, exceptionId, area);
+				break;
+			case LoggerLibrary::Logger::InfoLevel:
+				logger->Log("Info", logMessageLevel, messageInput, exceptionId, area);
+				break;
+			case LoggerLibrary::Logger::WarningLevel:
+				logger->Log("Warning", logMessageLevel, messageInput, exceptionId, area);
+				break;
+			case LoggerLibrary::Logger::ErrorLevel:
+				logger->Log("Error", logMessageLevel, messageInput, exceptionId, area);
+				break;
+			case LoggerLibrary::Logger::FatalLevel:
+				logger->Log("Fatal", logMessageLevel, messageInput, exceptionId, area);
+				break;
+			}
 		}
+
+
 		if (enableNetworkOutput)
 		{
 
 		}
 
-		switch (logMessageLevel)
-		{
-		case LoggerLibrary::Logger::TraceLevel:
-			LoggerLibrary::Logger::Trace("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
-			break;
-		case LoggerLibrary::Logger::DebugLevel:
-			LoggerLibrary::Logger::Debug("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
-			break;
-		case LoggerLibrary::Logger::InfoLevel:
-			LoggerLibrary::Logger::Info("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
-			break;
-		case LoggerLibrary::Logger::WarningLevel:
-			LoggerLibrary::Logger::Warning("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
-			break;
-		case LoggerLibrary::Logger::ErrorLevel:
-			LoggerLibrary::Logger::Error("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
-			break;
-		case LoggerLibrary::Logger::FatalLevel:
-			LoggerLibrary::Logger::Fatal("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
-			break;
-		}
 	}
 }

@@ -1,18 +1,16 @@
-#include "Logger.h"
+#include "ConsoleLogger.h"
 using namespace std;
 using namespace LoggerLibrary;
 
 int main()
 {
-    auto message = "Test";
-    auto exceptionId = 100;
-    auto area = "Main";
+    auto message = "Test log message sent to console";
+    auto exceptionId = 001;
+    auto area = "Console";
 
-    Logger::SetLevel(Logger::TraceLevel);
-
-    Logger::Trace("Message: %s. Error id: %d. Area: %s.", message, exceptionId, area);
-
-    LOG_INFO(message, area);
+    ConsoleLogger* logger = new ConsoleLogger();
+    logger->SetLevel(ConsoleLogger::TraceLevel);
+	logger->Log("Trace", ConsoleLogger::TraceLevel, message, exceptionId, area);
 
     return 0;
 }
