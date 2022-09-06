@@ -155,7 +155,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ServerNetwork.cpp" />
+    <ClCompile Include="src\ClientNetwork.cpp" />
+    <ClCompile Include="src\NetworkService.cpp" />
     <ClCompile Include="src\FileLogger.cpp" />
+    <ClCompile Include="src\NetworkLogger.cpp" />
     <ClCompile Include="src\PosgreSQLDBLogger.cpp" />
     <ClCompile Include="src\SQLServerDBLogger.cpp" />
     <ClCompile Include="src\ConsoleLogger.cpp" />
@@ -164,6 +168,9 @@
     <ClCompile Include="src\WindowsEventLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ServerNetwork.h" />
+    <ClInclude Include="src\ClientNetwork.h" />
+    <ClInclude Include="src\NetworkService.h" />
     <ClInclude Include="src\PosgreSQLDBLogger.h" />
     <ClInclude Include="src\SQLServerDBLogger.h" />
     <ClInclude Include="src\ConsoleLogger.h" />
