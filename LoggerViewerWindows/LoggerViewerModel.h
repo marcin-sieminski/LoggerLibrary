@@ -9,7 +9,7 @@
 
 **/
 #pragma once
-#include "FileLogger.h"
+#include "../Logger/FileLogger/FileLogger.h"
 
 namespace LoggerViewerModel
 {

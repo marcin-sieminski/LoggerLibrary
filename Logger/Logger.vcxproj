@@ -155,32 +155,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\LoggerServer.cpp" />
-    <ClCompile Include="src\ServerNetwork.cpp" />
-    <ClCompile Include="src\ClientNetwork.cpp" />
-    <ClCompile Include="src\NetworkService.cpp" />
-    <ClCompile Include="src\FileLogger.cpp" />
-    <ClCompile Include="src\NetworkLogger.cpp" />
-    <ClCompile Include="src\PosgreSQLDBLogger.cpp" />
-    <ClCompile Include="src\SQLServerDBLogger.cpp" />
-    <ClCompile Include="src\ConsoleLogger.cpp" />
-    <ClCompile Include="src\DatabaseLogger.cpp" />
-    <ClCompile Include="src\Logger.cpp" />
-    <ClCompile Include="src\WindowsEventLogger.cpp" />
+    <ClCompile Include="NetworkLogger\LoggerClient.cpp" />
+    <ClCompile Include="NetworkLogger\LoggerServer.cpp" />
+    <ClCompile Include="NetworkLogger\ServerNetwork.cpp" />
+    <ClCompile Include="NetworkLogger\ClientNetwork.cpp" />
+    <ClCompile Include="NetworkLogger\NetworkService.cpp" />
+    <ClCompile Include="FileLogger\FileLogger.cpp" />
+    <ClCompile Include="NetworkLogger\NetworkLogger.cpp" />
+    <ClCompile Include="DatabaseLogger\PosgreSQLDBLogger.cpp" />
+    <ClCompile Include="DatabaseLogger\SQLServerDBLogger.cpp" />
+    <ClCompile Include="ConsoleLogger\ConsoleLogger.cpp" />
+    <ClCompile Include="DatabaseLogger\DatabaseLogger.cpp" />
+    <ClCompile Include="Logger\Logger.cpp" />
+    <ClCompile Include="WindowsEventLogger\WindowsEventLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\LoggerServer.h" />
-    <ClInclude Include="src\ServerNetwork.h" />
-    <ClInclude Include="src\ClientNetwork.h" />
-    <ClInclude Include="src\NetworkService.h" />
-    <ClInclude Include="src\PosgreSQLDBLogger.h" />
-    <ClInclude Include="src\SQLServerDBLogger.h" />
-    <ClInclude Include="src\ConsoleLogger.h" />
-    <ClInclude Include="src\DatabaseLogger.h" />
-    <ClInclude Include="src\FileLogger.h" />
-    <ClInclude Include="src\NetworkLogger.h" />
-    <ClInclude Include="src\Logger.h" />
-    <ClInclude Include="src\WindowsEventLogger.h" />
+    <ClInclude Include="NetworkLogger\LoggerClient.h" />
+    <ClInclude Include="NetworkLogger\LoggerServer.h" />
+    <ClInclude Include="NetworkLogger\ServerNetwork.h" />
+    <ClInclude Include="NetworkLogger\ClientNetwork.h" />
+    <ClInclude Include="NetworkLogger\NetworkService.h" />
+    <ClInclude Include="DatabaseLogger\PosgreSQLDBLogger.h" />
+    <ClInclude Include="DatabaseLogger\SQLServerDBLogger.h" />
+    <ClInclude Include="ConsoleLogger\ConsoleLogger.h" />
+    <ClInclude Include="DatabaseLogger\DatabaseLogger.h" />
+    <ClInclude Include="FileLogger\FileLogger.h" />
+    <ClInclude Include="NetworkLogger\NetworkLogger.h" />
+    <ClInclude Include="Logger\Logger.h" />
+    <ClInclude Include="WindowsEventLogger\WindowsEventLogger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

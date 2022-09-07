@@ -9,7 +9,7 @@
 
 **/
 #include "LoggerViewerModel.h"
-#include "FileLogger.h"
+#include "../Logger/FileLogger/FileLogger.h"
 #include <fstream>
 #include <string>
 #include <boost/algorithm/string.hpp>

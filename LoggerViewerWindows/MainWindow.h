@@ -9,7 +9,7 @@
 
 **/
 #pragma once
-#include "Logger.h"
+#include "../Logger/Logger.h"
 #include "LoggerViewerModel.h"
 
 namespace LoggerViewerWindows {

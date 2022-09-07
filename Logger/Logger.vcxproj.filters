@@ -13,81 +13,117 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\NetworkLogger">
+      <UniqueIdentifier>{4d479f3d-8d98-4a06-ab1d-504aadb0cbeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NetworkLogger">
+      <UniqueIdentifier>{76230860-0079-4522-9d56-8b87489ae563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ConsoleLogger">
+      <UniqueIdentifier>{f58e2a9f-726c-430f-b67c-336ccc08768a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ConsoleLogger">
+      <UniqueIdentifier>{f63db87a-97a9-4ef9-8029-d8a294600f06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DatabaseLogger">
+      <UniqueIdentifier>{696f2d4d-edad-4c75-9184-3b3e5b65f2cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DatabaseLogger">
+      <UniqueIdentifier>{68248981-e4ec-4bab-9e3e-44598eaa632e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WindowsEventLogger">
+      <UniqueIdentifier>{af624b53-2a7e-43f8-b24a-aa9479e24190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\WindowsEventLogger">
+      <UniqueIdentifier>{e8222395-0210-4165-a032-90869cd58b06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FileLogger">
+      <UniqueIdentifier>{62250a03-6394-4df7-80a6-2b494e63658e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FileLogger">
+      <UniqueIdentifier>{75e43bf4-a411-4b5a-b2d4-db1ce563a90d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Logger.cpp">
+    <ClCompile Include="Logger\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DatabaseLogger.cpp">
+    <ClCompile Include="FileLogger\FileLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ConsoleLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="NetworkLogger\ClientNetwork.cpp">
+      <Filter>Source Files\NetworkLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\WindowsEventLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="NetworkLogger\LoggerClient.cpp">
+      <Filter>Source Files\NetworkLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\SQLServerDBLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="NetworkLogger\LoggerServer.cpp">
+      <Filter>Source Files\NetworkLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\PosgreSQLDBLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="NetworkLogger\NetworkLogger.cpp">
+      <Filter>Source Files\NetworkLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\FileLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="NetworkLogger\NetworkService.cpp">
+      <Filter>Source Files\NetworkLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\NetworkLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="NetworkLogger\ServerNetwork.cpp">
+      <Filter>Source Files\NetworkLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\NetworkService.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ConsoleLogger\ConsoleLogger.cpp">
+      <Filter>Source Files\ConsoleLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\ClientNetwork.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DatabaseLogger\DatabaseLogger.cpp">
+      <Filter>Source Files\DatabaseLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\ServerNetwork.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DatabaseLogger\PosgreSQLDBLogger.cpp">
+      <Filter>Source Files\DatabaseLogger</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoggerServer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DatabaseLogger\SQLServerDBLogger.cpp">
+      <Filter>Source Files\DatabaseLogger</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsEventLogger\WindowsEventLogger.cpp">
+      <Filter>Source Files\FileLogger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Logger.h">
+    <ClInclude Include="Logger\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\NetworkLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NetworkLogger\ClientNetwork.h">
+      <Filter>Header Files\NetworkLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\FileLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NetworkLogger\LoggerClient.h">
+      <Filter>Header Files\NetworkLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\DatabaseLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NetworkLogger\LoggerServer.h">
+      <Filter>Header Files\NetworkLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\ConsoleLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NetworkLogger\NetworkLogger.h">
+      <Filter>Header Files\NetworkLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\WindowsEventLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NetworkLogger\NetworkService.h">
+      <Filter>Header Files\NetworkLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\SQLServerDBLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NetworkLogger\ServerNetwork.h">
+      <Filter>Header Files\NetworkLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\PosgreSQLDBLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ConsoleLogger\ConsoleLogger.h">
+      <Filter>Header Files\ConsoleLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\NetworkService.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DatabaseLogger\DatabaseLogger.h">
+      <Filter>Header Files\DatabaseLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\ClientNetwork.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DatabaseLogger\PosgreSQLDBLogger.h">
+      <Filter>Header Files\DatabaseLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\ServerNetwork.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DatabaseLogger\SQLServerDBLogger.h">
+      <Filter>Header Files\DatabaseLogger</Filter>
     </ClInclude>
-    <ClInclude Include="src\LoggerServer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="WindowsEventLogger\WindowsEventLogger.h">
+      <Filter>Header Files\WindowsEventLogger</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLogger\FileLogger.h">
+      <Filter>Header Files\FileLogger</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
