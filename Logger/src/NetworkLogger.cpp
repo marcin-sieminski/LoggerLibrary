@@ -8,7 +8,6 @@
     @copyright © Marcin Siemiński, 2022. All right reserved.
 
 **/
-#include "NetworkLogger.h"
 
 namespace LoggerLibrary
 {

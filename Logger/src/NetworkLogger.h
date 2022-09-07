@@ -10,7 +10,6 @@
 **/
 #pragma once
 #include "Logger.h"
-#include "NetworkService.h"
 
 namespace LoggerLibrary
 {
@@ -23,6 +22,5 @@ namespace LoggerLibrary
 	**/
 	class NetworkLogger : public Logger
 	{
-
 	};
 }

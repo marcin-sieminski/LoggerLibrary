@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\LoggerServer.cpp" />
     <ClCompile Include="src\ServerNetwork.cpp" />
     <ClCompile Include="src\ClientNetwork.cpp" />
     <ClCompile Include="src\NetworkService.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="src\WindowsEventLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\LoggerServer.h" />
     <ClInclude Include="src\ServerNetwork.h" />
     <ClInclude Include="src\ClientNetwork.h" />
     <ClInclude Include="src\NetworkService.h" />
