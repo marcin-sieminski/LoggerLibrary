@@ -427,22 +427,22 @@ namespace LoggerViewerWindows {
 			// radioButtonDebugLevelMessage
 			// 
 			this->radioButtonDebugLevelMessage->AutoSize = true;
-			this->radioButtonDebugLevelMessage->Checked = true;
 			this->radioButtonDebugLevelMessage->Location = System::Drawing::Point(6, 42);
 			this->radioButtonDebugLevelMessage->Name = L"radioButtonDebugLevelMessage";
 			this->radioButtonDebugLevelMessage->Size = System::Drawing::Size(57, 17);
 			this->radioButtonDebugLevelMessage->TabIndex = 1;
-			this->radioButtonDebugLevelMessage->TabStop = true;
 			this->radioButtonDebugLevelMessage->Text = L"Debug";
 			this->radioButtonDebugLevelMessage->UseVisualStyleBackColor = true;
 			// 
 			// radioButtonTraceLevelMessage
 			// 
 			this->radioButtonTraceLevelMessage->AutoSize = true;
+			this->radioButtonTraceLevelMessage->Checked = true;
 			this->radioButtonTraceLevelMessage->Location = System::Drawing::Point(6, 19);
 			this->radioButtonTraceLevelMessage->Name = L"radioButtonTraceLevelMessage";
 			this->radioButtonTraceLevelMessage->Size = System::Drawing::Size(53, 17);
 			this->radioButtonTraceLevelMessage->TabIndex = 0;
+			this->radioButtonTraceLevelMessage->TabStop = true;
 			this->radioButtonTraceLevelMessage->Text = L"Trace";
 			this->radioButtonTraceLevelMessage->UseVisualStyleBackColor = true;
 			// 
