@@ -10,6 +10,7 @@
 **/
 #pragma once
 #pragma warning(disable : 4996)
+#include "../ThreadSafe/CThreadSafe.h"
 #include <string>
 #include <cstdio>
 #include <ctime>
@@ -26,7 +27,7 @@ namespace LoggerLibrary
 		@details ~
 
 	**/
-	class Logger
+	class Logger : public CThreadSafe
 	{
 	public:
 		/**

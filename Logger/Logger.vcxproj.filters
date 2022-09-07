@@ -43,12 +43,15 @@
     <Filter Include="Source Files\FileLogger">
       <UniqueIdentifier>{75e43bf4-a411-4b5a-b2d4-db1ce563a90d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ThreadSafe">
+      <UniqueIdentifier>{c02df5f8-7a1c-4aae-840e-f68993013b2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThreadSafe">
+      <UniqueIdentifier>{dcb7f2f1-5a7a-44ca-929c-7a505aab0001}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Logger\Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileLogger\FileLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NetworkLogger\ClientNetwork.cpp">
@@ -82,7 +85,16 @@
       <Filter>Source Files\DatabaseLogger</Filter>
     </ClCompile>
     <ClCompile Include="WindowsEventLogger\WindowsEventLogger.cpp">
+      <Filter>Source Files\WindowsEventLogger</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLogger\FileLogger.cpp">
       <Filter>Source Files\FileLogger</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadSafe\CLocker.cpp">
+      <Filter>Source Files\ThreadSafe</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadSafe\CThreadSafe.cpp">
+      <Filter>Source Files\ThreadSafe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="FileLogger\FileLogger.h">
       <Filter>Header Files\FileLogger</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadSafe\CLocker.h">
+      <Filter>Header Files\ThreadSafe</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadSafe\CThreadSafe.h">
+      <Filter>Header Files\ThreadSafe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

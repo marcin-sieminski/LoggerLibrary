@@ -39,6 +39,9 @@ namespace LoggerLibrary
 				std::time_t current_time = std::time(0);
 				std::tm* timestamp = std::localtime(&current_time);
 
+				CThreadSafe thread_safe;
+				thread_safe.lock();
+
 				std::strftime(buffer, 80, timestamp_format, timestamp);
 				std::printf("%s    ", buffer);
 				std::printf("[");
@@ -47,6 +50,8 @@ namespace LoggerLibrary
 				std::printf("\t");
 				std::printf(message);
 				std::printf("\n");
+
+				thread_safe.unlock();
 			}
 		}
 	};	

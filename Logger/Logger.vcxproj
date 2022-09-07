@@ -155,6 +155,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ThreadSafe\CThreadSafe.cpp" />
+    <ClCompile Include="ThreadSafe\CLocker.cpp" />
     <ClCompile Include="NetworkLogger\LoggerClient.cpp" />
     <ClCompile Include="NetworkLogger\LoggerServer.cpp" />
     <ClCompile Include="NetworkLogger\ServerNetwork.cpp" />
@@ -170,6 +172,8 @@
     <ClCompile Include="WindowsEventLogger\WindowsEventLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ThreadSafe\CThreadSafe.h" />
+    <ClInclude Include="ThreadSafe\CLocker.h" />
     <ClInclude Include="NetworkLogger\LoggerClient.h" />
     <ClInclude Include="NetworkLogger\LoggerServer.h" />
     <ClInclude Include="NetworkLogger\ServerNetwork.h" />
