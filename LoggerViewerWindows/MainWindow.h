@@ -579,8 +579,7 @@ namespace LoggerViewerWindows {
 	}
 
 	private: System::Void buttonReadFile_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		textBoxFileLog->Text = LoggerViewerModel::LoggerViewerModel::ReadLogFile();
+			textBoxFileLog->Text = LoggerViewerModel::LoggerViewerModel::ReadLogFile();
 	}
 
 	private: System::Void buttonClear_Click(System::Object^ sender, System::EventArgs^ e) {

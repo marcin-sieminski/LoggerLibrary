@@ -26,13 +26,13 @@ namespace LoggerLibrary
 		DebugConsoleLogger() = default;
 		/**
 			@brief  Log method.
-			@tparam Args                 - template parameter pack type
 			@param  message_priority_str - message priority description
 			@param  message_priority     - message priority enum
 			@param  message              - log message
+			@param args
 		**/
 		template<typename... Args>
-		void Log(const char* message_priority_str, LogLevel message_priority, const char* message)
+		void Log(const char* message_priority_str, LogLevel message_priority, const char* message, Args... args)
 		{
 			if (level <= message_priority)
 			{

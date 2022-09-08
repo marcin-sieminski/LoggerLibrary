@@ -8,3 +8,6 @@
 	@copyright © Marcin Siemiñski, 2022. All right reserved.
 
 **/
+
+#include "ConsoleLogger.h"
+

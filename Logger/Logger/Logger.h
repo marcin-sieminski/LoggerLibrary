@@ -91,14 +91,5 @@ namespace LoggerLibrary
 			@retval  - const char*
 		**/
 		const char* GetTimestampFormat();
-
-
-
-	protected:
-		template<typename... Args>
-		void log(const char* message_priority_str, LogLevel message_priority, const char* message, Args... args);
-
-		template<typename... Args>
-		void log(int line_number, const char* source_file, const char* message_priority_str, LogLevel message_priority, const char* message, Args... args);
 	};
 }

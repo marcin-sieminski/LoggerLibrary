@@ -1,16 +1,23 @@
+#include <vector>
 #include "ConsoleLogger/ConsoleLogger.h"
 using namespace std;
 using namespace LoggerLibrary;
 
 int main()
 {
-    auto message = "Test log message sent to console";
-    auto exceptionId = 001;
-    auto area = "Console";
+	vector<string> messagesToLog;
 
-    ConsoleLogger* logger = new ConsoleLogger();
-    logger->SetLevel(ConsoleLogger::TraceLevel);
-	logger->Log("Trace", ConsoleLogger::TraceLevel, message);
+	messagesToLog.push_back("Log message sent to console # 1");
+	messagesToLog.push_back("Log message sent to console # 2");
+	messagesToLog.push_back("Log message sent to console # 3");
 
-    return 0;
+	ConsoleLogger* logger = new ConsoleLogger();
+	logger->SetLevel(ConsoleLogger::TraceLevel);
+
+	for (auto message : messagesToLog)
+	{
+		logger->Log("Trace", ConsoleLogger::TraceLevel, message.c_str());
+	}
+
+	return 0;
 }

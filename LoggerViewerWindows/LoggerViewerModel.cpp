@@ -28,7 +28,6 @@ namespace LoggerViewerModel
 
 	void LoggerViewerModel::Log(System::String^ message, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, bool enableConsoleOutput, LoggerLibrary::Logger::LogLevel logMessageLevel)
 	{
-
 		msclr::interop::marshal_context oMarshalContext;
 		const char* messageInput = oMarshalContext.marshal_as<const char*>(message);
 

@@ -59,13 +59,13 @@ namespace LoggerLibrary
 
 		/**
 			@brief	Log method
-			@tparam Args                 - template parameter pack type
 			@param  message_priority_str - message priority description
 			@param  message_priority     - message priority
 			@param  message              - message
+			@param args
 		**/
 		template<typename... Args>
-		void Log(const char* message_priority_str, LogLevel message_priority, const char* message)
+		void Log(const char* message_priority_str, LogLevel message_priority, const char* message, Args... args)
 		{
 			if (level <= message_priority && file)
 			{
@@ -81,7 +81,7 @@ namespace LoggerLibrary
 				std::fprintf(file, message_priority_str);
 				std::fprintf(file, "]");
 				std::fprintf(file, "\t");
-				std::fprintf(file, message);
+				std::fprintf(file, message, args...);
 				std::fprintf(file, "\n");
 
 				thread_safe.unlock();
