@@ -49,11 +49,20 @@
     <Filter Include="Source Files\ThreadSafe">
       <UniqueIdentifier>{dcb7f2f1-5a7a-44ca-929c-7a505aab0001}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Logger">
+      <UniqueIdentifier>{0c64f32e-b0ea-423a-85ef-fce83d804b78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logger">
+      <UniqueIdentifier>{d5d1cc9f-60a0-4e2b-b281-7e865bcb73d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DebugConsole">
+      <UniqueIdentifier>{bd727804-faa5-4943-87c9-309e6e7bdd6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DebugConsoleLogger">
+      <UniqueIdentifier>{b702cf82-c348-4eff-9aa2-63cb503fe64b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Logger\Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NetworkLogger\ClientNetwork.cpp">
       <Filter>Source Files\NetworkLogger</Filter>
     </ClCompile>
@@ -71,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="NetworkLogger\ServerNetwork.cpp">
       <Filter>Source Files\NetworkLogger</Filter>
-    </ClCompile>
-    <ClCompile Include="ConsoleLogger\ConsoleLogger.cpp">
-      <Filter>Source Files\ConsoleLogger</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseLogger\DatabaseLogger.cpp">
       <Filter>Source Files\DatabaseLogger</Filter>
@@ -96,11 +102,17 @@
     <ClCompile Include="ThreadSafe\CThreadSafe.cpp">
       <Filter>Source Files\ThreadSafe</Filter>
     </ClCompile>
+    <ClCompile Include="Logger\Logger.cpp">
+      <Filter>Source Files\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLogger\ConsoleLogger.cpp">
+      <Filter>Source Files\ConsoleLogger</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugConsoleLogger\DebugConsoleLogger.cpp">
+      <Filter>Source Files\DebugConsoleLogger</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Logger\Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkLogger\ClientNetwork.h">
       <Filter>Header Files\NetworkLogger</Filter>
     </ClInclude>
@@ -118,9 +130,6 @@
     </ClInclude>
     <ClInclude Include="NetworkLogger\ServerNetwork.h">
       <Filter>Header Files\NetworkLogger</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleLogger\ConsoleLogger.h">
-      <Filter>Header Files\ConsoleLogger</Filter>
     </ClInclude>
     <ClInclude Include="DatabaseLogger\DatabaseLogger.h">
       <Filter>Header Files\DatabaseLogger</Filter>
@@ -142,6 +151,15 @@
     </ClInclude>
     <ClInclude Include="ThreadSafe\CThreadSafe.h">
       <Filter>Header Files\ThreadSafe</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\Logger.h">
+      <Filter>Header Files\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugConsoleLogger\DebugConsoleLogger.h">
+      <Filter>Header Files\DebugConsole</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLogger\ConsoleLogger.h">
+      <Filter>Header Files\ConsoleLogger</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -77,7 +77,7 @@ namespace LoggerLibrary
 				thread_safe.lock();
 
 				std::fprintf(file, "%s    ", buffer);
-				std::fprintf(file, "[");
+				std::fprintf(file, "\t[");
 				std::fprintf(file, message_priority_str);
 				std::fprintf(file, "]");
 				std::fprintf(file, "\t");

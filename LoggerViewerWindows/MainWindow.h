@@ -91,6 +91,8 @@ namespace LoggerViewerWindows {
 	private: System::Windows::Forms::RadioButton^ radioButtonTraceLevelMessage;
 	private: System::Windows::Forms::Button^ buttonReadFile;
 	private: System::Windows::Forms::Button^ buttonClear;
+	private: System::Windows::Forms::CheckBox^ checkBoxDatabase;
+	private: System::Windows::Forms::CheckBox^ checkBoxConsole;
 
 
 
@@ -118,6 +120,8 @@ namespace LoggerViewerWindows {
 			this->radioButtonInfoLevel = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonDebugLevel = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBoxTarget = (gcnew System::Windows::Forms::GroupBox());
+			this->checkBoxDatabase = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBoxConsole = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBoxNetwork = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBoxFile = (gcnew System::Windows::Forms::CheckBox());
 			this->textBoxFileLog = (gcnew System::Windows::Forms::TextBox());
@@ -227,6 +231,8 @@ namespace LoggerViewerWindows {
 			// 
 			// groupBoxTarget
 			// 
+			this->groupBoxTarget->Controls->Add(this->checkBoxDatabase);
+			this->groupBoxTarget->Controls->Add(this->checkBoxConsole);
 			this->groupBoxTarget->Controls->Add(this->checkBoxNetwork);
 			this->groupBoxTarget->Controls->Add(this->checkBoxFile);
 			this->groupBoxTarget->Location = System::Drawing::Point(315, 109);
@@ -235,6 +241,26 @@ namespace LoggerViewerWindows {
 			this->groupBoxTarget->TabIndex = 2;
 			this->groupBoxTarget->TabStop = false;
 			this->groupBoxTarget->Text = L"Target";
+			// 
+			// checkBoxDatabase
+			// 
+			this->checkBoxDatabase->AutoSize = true;
+			this->checkBoxDatabase->Location = System::Drawing::Point(102, 42);
+			this->checkBoxDatabase->Name = L"checkBoxDatabase";
+			this->checkBoxDatabase->Size = System::Drawing::Size(72, 17);
+			this->checkBoxDatabase->TabIndex = 3;
+			this->checkBoxDatabase->Text = L"Database";
+			this->checkBoxDatabase->UseVisualStyleBackColor = true;
+			// 
+			// checkBoxConsole
+			// 
+			this->checkBoxConsole->AutoSize = true;
+			this->checkBoxConsole->Location = System::Drawing::Point(102, 20);
+			this->checkBoxConsole->Name = L"checkBoxConsole";
+			this->checkBoxConsole->Size = System::Drawing::Size(99, 17);
+			this->checkBoxConsole->TabIndex = 2;
+			this->checkBoxConsole->Text = L"Debug Console";
+			this->checkBoxConsole->UseVisualStyleBackColor = true;
 			// 
 			// checkBoxNetwork
 			// 
@@ -458,7 +484,7 @@ namespace LoggerViewerWindows {
 			this->Controls->Add(this->groupBoxLogMessageLevel);
 			this->Controls->Add(this->groupBoxLoggingLevel);
 			this->Name = L"MainWindow";
-			this->Text = L"Logger Generator & Viewer";
+			this->Text = L"Logs Generator & Viewer";
 			this->groupBoxLoggingLevel->ResumeLayout(false);
 			this->groupBoxLoggingLevel->PerformLayout();
 			this->groupBoxTarget->ResumeLayout(false);
@@ -483,6 +509,7 @@ namespace LoggerViewerWindows {
 		LoggerLibrary::Logger::LogLevel logMessageLevel;
 		bool enableFileOutput = false;
 		bool enableNetworkOutput = false;
+		bool enableConsoleOutput = false;
 
 		if (radioButtonTraceLevel->Checked)
 		{
@@ -517,6 +544,10 @@ namespace LoggerViewerWindows {
 		{
 			enableNetworkOutput = true;
 		}
+		if (checkBoxConsole->Checked)
+		{
+			enableConsoleOutput = true;
+		}
 
 		if (radioButtonTraceLevelMessage->Checked)
 		{
@@ -544,8 +575,7 @@ namespace LoggerViewerWindows {
 		}
 
 
-		LoggerViewerModel::LoggerViewerModel::Log(message, loggingLevel, enableFileOutput, enableNetworkOutput, logMessageLevel);
-
+		LoggerViewerModel::LoggerViewerModel::Log(message, loggingLevel, enableFileOutput, enableNetworkOutput, enableConsoleOutput, logMessageLevel);
 	}
 
 	private: System::Void buttonReadFile_Click(System::Object^ sender, System::EventArgs^ e) {

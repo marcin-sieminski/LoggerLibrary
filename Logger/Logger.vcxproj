@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConsoleLogger\ConsoleLogger.cpp" />
     <ClCompile Include="ThreadSafe\CThreadSafe.cpp" />
     <ClCompile Include="ThreadSafe\CLocker.cpp" />
     <ClCompile Include="NetworkLogger\LoggerClient.cpp" />
@@ -166,12 +167,13 @@
     <ClCompile Include="NetworkLogger\NetworkLogger.cpp" />
     <ClCompile Include="DatabaseLogger\PosgreSQLDBLogger.cpp" />
     <ClCompile Include="DatabaseLogger\SQLServerDBLogger.cpp" />
-    <ClCompile Include="ConsoleLogger\ConsoleLogger.cpp" />
+    <ClCompile Include="DebugConsoleLogger\DebugConsoleLogger.cpp" />
     <ClCompile Include="DatabaseLogger\DatabaseLogger.cpp" />
     <ClCompile Include="Logger\Logger.cpp" />
     <ClCompile Include="WindowsEventLogger\WindowsEventLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleLogger\ConsoleLogger.h" />
     <ClInclude Include="ThreadSafe\CThreadSafe.h" />
     <ClInclude Include="ThreadSafe\CLocker.h" />
     <ClInclude Include="NetworkLogger\LoggerClient.h" />
@@ -181,7 +183,7 @@
     <ClInclude Include="NetworkLogger\NetworkService.h" />
     <ClInclude Include="DatabaseLogger\PosgreSQLDBLogger.h" />
     <ClInclude Include="DatabaseLogger\SQLServerDBLogger.h" />
-    <ClInclude Include="ConsoleLogger\ConsoleLogger.h" />
+    <ClInclude Include="DebugConsoleLogger\DebugConsoleLogger.h" />
     <ClInclude Include="DatabaseLogger\DatabaseLogger.h" />
     <ClInclude Include="FileLogger\FileLogger.h" />
     <ClInclude Include="NetworkLogger\NetworkLogger.h" />

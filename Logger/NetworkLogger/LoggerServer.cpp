@@ -1,3 +1,14 @@
+/**
+
+    @file      LoggerServer.cpp
+    @brief     LoggerServer
+    @details   ~
+    @author    Marcin Siemiñski
+    @date      8.09.2022
+    @copyright © Marcin Siemiñski, 2022. All right reserved.
+
+**/
+
 #include "LoggerServer.h"
 
 unsigned int LoggerLibrary::LoggerServer::client_id;

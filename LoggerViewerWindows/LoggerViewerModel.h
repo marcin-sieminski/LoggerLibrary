@@ -10,6 +10,7 @@
 **/
 #pragma once
 #include "../Logger/FileLogger/FileLogger.h"
+#include "../Logger/DebugConsoleLogger/DebugConsoleLogger.h"
 
 namespace LoggerViewerModel
 {
@@ -39,7 +40,7 @@ namespace LoggerViewerModel
 			@param enableNetworkOutput -
 			@param logMessageLevel     -
 		**/
-		static void Log(System::String^ message, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, LoggerLibrary::Logger::LogLevel logMessageLevel);
+		static void Log(System::String^ message, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, bool enableConsoleOutput, LoggerLibrary::Logger::LogLevel logMessageLevel);
 	};
 
 }

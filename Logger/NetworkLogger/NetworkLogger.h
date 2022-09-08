@@ -9,7 +9,10 @@
 
 **/
 #pragma once
-#include "Logger.h"
+#include "../Logger/Logger.h"
+//#include "../NetworkLogger/LoggerServer.h"
+//#include "../NetworkLogger/LoggerClient.h"
+#include <process.h>
 
 namespace LoggerLibrary
 {
