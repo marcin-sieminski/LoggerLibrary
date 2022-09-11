@@ -505,35 +505,35 @@ namespace LoggerViewerWindows {
 #pragma endregion
 	private: System::Void buttonGenerateLog_Click(System::Object^ sender, System::EventArgs^ e) {
 		auto message = textBoxLogMessage->Text;
-		LoggerLibrary::Logger::LogLevel loggingLevel;
-		LoggerLibrary::Logger::LogLevel logMessageLevel;
+		LoggerLibrary::LogLevel loggingLevel;
+		LoggerLibrary::LogLevel logMessageLevel;
 		bool enableFileOutput = false;
 		bool enableNetworkOutput = false;
 		bool enableConsoleOutput = false;
 
 		if (radioButtonTraceLevel->Checked)
 		{
-			loggingLevel = LoggerLibrary::Logger::TraceLevel;
+			loggingLevel = LoggerLibrary::LogLevel::TraceLevel;
 		}
 		else if (radioButtonDebugLevel->Checked)
 		{
-			loggingLevel = LoggerLibrary::Logger::DebugLevel;
+			loggingLevel = LoggerLibrary::LogLevel::DebugLevel;
 		}
 		else if (radioButtonInfoLevel->Checked)
 		{
-			loggingLevel = LoggerLibrary::Logger::InfoLevel;
+			loggingLevel = LoggerLibrary::LogLevel::InfoLevel;
 		}
 		else if (radioButtonWarningLevel->Checked)
 		{
-			loggingLevel = LoggerLibrary::Logger::WarningLevel;
+			loggingLevel = LoggerLibrary::LogLevel::WarningLevel;
 		}
 		else if (radioButtonErrorLevel->Checked)
 		{
-			loggingLevel = LoggerLibrary::Logger::ErrorLevel;
+			loggingLevel = LoggerLibrary::LogLevel::ErrorLevel;
 		}
 		else
 		{
-			loggingLevel = LoggerLibrary::Logger::FatalLevel;
+			loggingLevel = LoggerLibrary::LogLevel::FatalLevel;
 		}
 
 		if (checkBoxFile->Checked)
@@ -551,29 +551,28 @@ namespace LoggerViewerWindows {
 
 		if (radioButtonTraceLevelMessage->Checked)
 		{
-			logMessageLevel = LoggerLibrary::Logger::TraceLevel;
+			logMessageLevel = LoggerLibrary::LogLevel::TraceLevel;
 		}
 		else if (radioButtonDebugLevelMessage->Checked)
 		{
-			logMessageLevel = LoggerLibrary::Logger::DebugLevel;
+			logMessageLevel = LoggerLibrary::LogLevel::DebugLevel;
 		}
 		else if (radioButtonInfoLevelMessage->Checked)
 		{
-			logMessageLevel = LoggerLibrary::Logger::InfoLevel;
+			logMessageLevel = LoggerLibrary::LogLevel::InfoLevel;
 		}
 		else if (radioButtonWarningLevelMessage->Checked)
 		{
-			logMessageLevel = LoggerLibrary::Logger::WarningLevel;
+			logMessageLevel = LoggerLibrary::LogLevel::WarningLevel;
 		}
 		else if (radioButtonErrorLevelMessage->Checked)
 		{
-			logMessageLevel = LoggerLibrary::Logger::ErrorLevel;
+			logMessageLevel = LoggerLibrary::LogLevel::ErrorLevel;
 		}
 		else
 		{
-			logMessageLevel = LoggerLibrary::Logger::FatalLevel;
+			logMessageLevel = LoggerLibrary::LogLevel::FatalLevel;
 		}
-
 
 		LoggerViewerModel::LoggerViewerModel::Log(message, loggingLevel, enableFileOutput, enableNetworkOutput, enableConsoleOutput, logMessageLevel);
 	}

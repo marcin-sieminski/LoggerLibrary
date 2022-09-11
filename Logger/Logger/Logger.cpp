@@ -9,28 +9,42 @@
 
 **/
 #include "Logger.h"
+#include "../LogMessage.h"
 using namespace std;
 
-namespace LoggerLibrary
+void LoggerLibrary::Logger::SetLevel(LogLevel new_level)
 {
-	void Logger::SetLevel(LogLevel new_level)
-	{
-		level = new_level;
-	}
+	level = new_level;
+}
 
-	Logger::LogLevel Logger::GetPriority()
-	{
-		return level;
-	}
+LoggerLibrary::LogLevel LoggerLibrary::Logger::GetPriority()
+{
+	return level;
+}
 
-	void Logger::SetTimestampFormat(const char* new_timestamp_format)
-	{
-		timestamp_format = new_timestamp_format;
-	}
+void LoggerLibrary::Logger::SetTimestampFormat(const char* new_timestamp_format)
+{
+	timestamp_format = new_timestamp_format;
+}
 
-	const char* Logger::GetTimestampFormat()
+const char* LoggerLibrary::Logger::GetTimestampFormat()
+{
+	return timestamp_format;
+}
+
+void LoggerLibrary::Logger::Log(LogMessage* log_message)
+{
+	if (level <= log_message->GetMessagePriority())
 	{
-		return timestamp_format;
+		CThreadSafe thread_safe;
+		thread_safe.lock();
+
+		CreateLogEntry(log_message);
+
+		thread_safe.unlock();
 	}
+}
+void LoggerLibrary::Logger::CreateLogEntry(LogMessage* log_message)
+{
 
 }

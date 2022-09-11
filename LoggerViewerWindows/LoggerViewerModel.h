@@ -11,6 +11,7 @@
 #pragma once
 #include "../Logger/FileLogger/FileLogger.h"
 #include "../Logger/DebugConsoleLogger/DebugConsoleLogger.h"
+#include "../LogMessage.h"
 
 namespace LoggerViewerModel
 {
@@ -33,14 +34,16 @@ namespace LoggerViewerModel
 		/**
 			@brief Log
 			@param message             -
-			@param exceptionId         -
-			@param area                -
 			@param loggingLevel        -
 			@param enableFileOutput    -
 			@param enableNetworkOutput -
 			@param logMessageLevel     -
 		**/
-		static void Log(System::String^ message, LoggerLibrary::Logger::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, bool enableConsoleOutput, LoggerLibrary::Logger::LogLevel logMessageLevel);
+		static void Log(System::String^ message, LoggerLibrary::LogLevel loggingLevel, bool enableFileOutput, bool enableNetworkOutput, bool enableConsoleOutput, LoggerLibrary::LogLevel logMessageLevel);
+
+	private:
+
+		static void LoggerViewerModel::SendLogMessageToEnabledLogger(LoggerLibrary::Logger* enabled_logger, const char* messageInput, LoggerLibrary::LogLevel logMessageLevel);
 	};
 
 }

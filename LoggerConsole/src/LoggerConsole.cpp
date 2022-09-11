@@ -1,5 +1,8 @@
 #include <vector>
 #include "ConsoleLogger/ConsoleLogger.h"
+#include "../LogMessage.h"
+#include "../LogLevel.h"
+
 using namespace std;
 using namespace LoggerLibrary;
 
@@ -12,11 +15,15 @@ int main()
 	messagesToLog.push_back("Log message sent to console # 3");
 
 	ConsoleLogger* logger = new ConsoleLogger();
-	logger->SetLevel(ConsoleLogger::TraceLevel);
+	logger->SetLevel(TraceLevel);
 
 	for (auto message : messagesToLog)
 	{
-		logger->Log("Trace", ConsoleLogger::TraceLevel, message.c_str());
+		LogMessage* logMessage = new LogMessage();
+		logMessage->SetMessagePriorityDescription("Trace");
+		logMessage->SetMessagePriority(TraceLevel);
+		logMessage->SetMessageText(message.c_str());
+		logger->Log(logMessage);
 	}
 
 	return 0;

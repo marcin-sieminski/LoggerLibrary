@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleLogger\ConsoleLogger.cpp" />
+    <ClCompile Include="LogMessage.cpp" />
     <ClCompile Include="ThreadSafe\CThreadSafe.cpp" />
     <ClCompile Include="ThreadSafe\CLocker.cpp" />
     <ClCompile Include="NetworkLogger\LoggerClient.cpp" />
@@ -174,6 +175,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleLogger\ConsoleLogger.h" />
+    <ClInclude Include="LogLevel.h" />
+    <ClInclude Include="LogMessage.h" />
     <ClInclude Include="ThreadSafe\CThreadSafe.h" />
     <ClInclude Include="ThreadSafe\CLocker.h" />
     <ClInclude Include="NetworkLogger\LoggerClient.h" />

@@ -9,17 +9,17 @@
 
 **/
 #pragma once
-#pragma warning(disable : 4996)
 #include "../ThreadSafe/CThreadSafe.h"
+#include "../LogLevel.h"
 #include <string>
 #include <cstdio>
-#include <ctime>
 /**
 	@namespace LoggerLibrary
 	@brief     Logger Library namespace.
 **/
 namespace LoggerLibrary
 {
+	class LogMessage;
 	/**
 
 		@class   Logger
@@ -29,20 +29,16 @@ namespace LoggerLibrary
 	**/
 	class Logger : public CThreadSafe
 	{
-	public:
-		/**
-			@enum  LoggerLibrary::Logger::LogLevel
-			@brief Log level enum.
-		**/
-		enum LogLevel
-		{
-			TraceLevel, DebugLevel, InfoLevel, WarningLevel, ErrorLevel, FatalLevel
-		};
-
 	protected:
-		LogLevel level = InfoLevel;
+		LoggerLibrary::LogLevel level = InfoLevel;
 		char buffer[80];
 		const char* timestamp_format = "%T  %d-%m-%Y";
+
+		/**
+			@brief Creates log entry
+			@param log_message -
+		**/
+		virtual void CreateLogEntry(LogMessage* log_message);
 
 	public:
 		/**
@@ -91,5 +87,12 @@ namespace LoggerLibrary
 			@retval  - const char*
 		**/
 		const char* GetTimestampFormat();
+
+		/**
+			@brief Log method to log log message
+			@param log_message - log message
+		**/
+		virtual void Log(LogMessage* log_message);
+
 	};
 }

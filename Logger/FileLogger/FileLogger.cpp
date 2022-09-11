@@ -9,6 +9,8 @@
 
 **/
 #include "FileLogger.h"
+#include <ctime>
+#include "../LogMessage.h"
 
 namespace LoggerLibrary
 {
@@ -58,6 +60,20 @@ namespace LoggerLibrary
 			std::fclose(file);
 			file = 0;
 		}
+	}
+
+	void FileLogger::CreateLogEntry(LogMessage* log_message)
+	{
+		std::strftime(buffer, 80, timestamp_format, log_message->GetTimestamp());
+		std::fprintf(file, "%s    ", buffer);
+		std::fprintf(file, "\t[");
+		std::fprintf(file, log_message->GetMessagePriorityDescription());
+		std::fprintf(file, "]");
+		std::fprintf(file, "\t");
+		std::fprintf(file, log_message->GetMessageText());
+		std::fprintf(file, "\n");
+
+		free_file();
 	}
 
 }

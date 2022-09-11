@@ -57,39 +57,6 @@ namespace LoggerLibrary
 		**/
 		~FileLogger();
 
-		/**
-			@brief	Log method
-			@param  message_priority_str - message priority description
-			@param  message_priority     - message priority
-			@param  message              - message
-			@param args
-		**/
-		template<typename... Args>
-		void Log(const char* message_priority_str, LogLevel message_priority, const char* message, Args... args)
-		{
-			if (level <= message_priority && file)
-			{
-				std::time_t current_time = std::time(0);
-				std::tm* timestamp = std::localtime(&current_time);
-				std::strftime(buffer, 80, timestamp_format, timestamp);
-
-				CThreadSafe thread_safe;
-				thread_safe.lock();
-
-				std::fprintf(file, "%s    ", buffer);
-				std::fprintf(file, "\t[");
-				std::fprintf(file, message_priority_str);
-				std::fprintf(file, "]");
-				std::fprintf(file, "\t");
-				std::fprintf(file, message, args...);
-				std::fprintf(file, "\n");
-
-				thread_safe.unlock();
-
-				free_file();
-			}
-		}
-
 	private:
 		/**
 			@brief	Enable file output method
@@ -101,5 +68,9 @@ namespace LoggerLibrary
 			@brief	Free file method
 		**/
 		void free_file();
+
+	protected:
+		void CreateLogEntry(LogMessage* log_message) override;
+
 	};
 }

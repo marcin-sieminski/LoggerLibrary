@@ -10,6 +10,8 @@
 **/
 #pragma once
 #include "../Logger/Logger.h"
+#include "../LogMessage.h"
+#include <ctime>
 
 namespace LoggerLibrary
 {
@@ -28,36 +30,7 @@ namespace LoggerLibrary
 		**/
 		ConsoleLogger() = default;
 
-		/**
-			@brief  Log method.
-			@param  message_priority_str - message priority description
-			@param  message_priority     - message priority enum
-			@param  message              - log message
-			@param args	- additional arguments 
-		**/
-		template<typename... Args>
-		void Log(const char* message_priority_str, LogLevel message_priority, const char* message, Args... args)
-		{
-			if (level <= message_priority)
-			{
-				std::time_t current_time = std::time(0);
-				std::tm* timestamp = std::localtime(&current_time);
-
-				LoggerLibrary::CThreadSafe thread_safe;
-				thread_safe.lock();
-
-				std::strftime(buffer, 80, timestamp_format, timestamp);
-				std::printf("%s    ", buffer);
-				std::printf("[");
-				std::printf(message_priority_str);
-				std::printf("]");
-				std::printf("\t");
-				std::printf(message, args...);
-				std::printf("\n");
-
-				thread_safe.unlock();
-			}
-		}
+		void CreateLogEntry(LogMessage* log_message) override;
 
 	};
 }

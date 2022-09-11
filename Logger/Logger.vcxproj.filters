@@ -111,6 +111,9 @@
     <ClCompile Include="DebugConsoleLogger\DebugConsoleLogger.cpp">
       <Filter>Source Files\DebugConsoleLogger</Filter>
     </ClCompile>
+    <ClCompile Include="LogMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NetworkLogger\ClientNetwork.h">
@@ -160,6 +163,12 @@
     </ClInclude>
     <ClInclude Include="ConsoleLogger\ConsoleLogger.h">
       <Filter>Header Files\ConsoleLogger</Filter>
+    </ClInclude>
+    <ClInclude Include="LogMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LogLevel.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
